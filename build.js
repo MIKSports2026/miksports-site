@@ -136,7 +136,6 @@ if (fs.existsSync(newsDir)) {
     });
 }
 
-copyDir('admin', path.join(PUBLIC_DIR, 'admin'));
 // 날짜 내림차순
 allNews.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
