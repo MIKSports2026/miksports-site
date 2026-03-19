@@ -25,10 +25,12 @@ function parseMd(filepath) {
     const colon = line.indexOf(':');
     if (colon < 0) return;
     const key = line.slice(0, colon).trim();
-    let   val = line.slice(colon + 1).trim().replace(/^["']|["']$/g, '');
+    let val = line.slice(colon + 1).trim().replace(/^["']|["']$/g, '');
+
     if (val === 'true') val = true;
     else if (val === 'false') val = false;
     else if (val !== '' && !isNaN(val)) val = Number(val);
+
     meta[key] = val;
   });
   return { meta, body: match[2].trim() };
@@ -40,14 +42,15 @@ function mdToHtml(md = '') {
   let inList  = false;
 
   for (const line of lines) {
-    if (line.startsWith('### '))        { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h3>${inline(line.slice(4))}</h3>`); }
-    else if (line.startsWith('## '))   { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h2>${inline(line.slice(3))}</h2>`); }
-    else if (line.startsWith('# '))    { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h1>${inline(line.slice(2))}</h1>`); }
-    else if (line.startsWith('> '))    { if (inList) { out.push('</ul>'); inList = false; } out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`); }
-    else if (line.match(/^[-*] /))     { if (!inList) { out.push('<ul>'); inList = true; }  out.push(`<li>${inline(line.slice(2))}</li>`); }
-    else if (line.trim() === '')        { if (inList) { out.push('</ul>'); inList = false; } out.push(''); }
-    else                                { if (inList) { out.push('</ul>'); inList = false; } out.push(`<p>${inline(line)}</p>`); }
+    if (line.startsWith('### '))      { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h3>${inline(line.slice(4))}</h3>`); }
+    else if (line.startsWith('## '))  { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h2>${inline(line.slice(3))}</h2>`); }
+    else if (line.startsWith('# '))   { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h1>${inline(line.slice(2))}</h1>`); }
+    else if (line.startsWith('> '))   { if (inList) { out.push('</ul>'); inList = false; } out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`); }
+    else if (line.match(/^[-*] /))    { if (!inList) { out.push('<ul>'); inList = true; } out.push(`<li>${inline(line.slice(2))}</li>`); }
+    else if (line.trim() === '')      { if (inList) { out.push('</ul>'); inList = false; } out.push(''); }
+    else                              { if (inList) { out.push('</ul>'); inList = false; } out.push(`<p>${inline(line)}</p>`); }
   }
+
   if (inList) out.push('</ul>');
   return out.join('\n');
 }
@@ -55,18 +58,31 @@ function mdToHtml(md = '') {
 function inline(s = '') {
   return s
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,     '<em>$1</em>')
-    .replace(/`(.+?)`/g,       '<code>$1</code>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 }
 
-function fmtDate(d = '') { return String(d).slice(0, 10).replace(/-/g, '.'); }
+function fmtDate(d = '') {
+  return String(d).slice(0, 10).replace(/-/g, '.');
+}
+
+function normalizeTags(tags) {
+  if (Array.isArray(tags)) return tags.filter(Boolean).map(String);
+  if (typeof tags === 'string') {
+    return tags
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
 
 const CAT = {
-  press:  { label: '보도자료',       cls: 'cat-press',  bg: 't-dark'  },
-  race:   { label: '레이스 리포트', cls: 'cat-race',   bg: 't-dark'  },
-  notice: { label: '공지사항',       cls: 'cat-notice', bg: 't-blue'  },
-  biz:    { label: '비즈니스',       cls: 'cat-biz',    bg: 't-grey'  },
+  press:  { label: '보도자료',       cls: 'cat-press',  bg: 't-dark' },
+  race:   { label: '레이스 리포트', cls: 'cat-race',   bg: 't-dark' },
+  notice: { label: '공지사항',       cls: 'cat-notice', bg: 't-blue' },
+  biz:    { label: '비즈니스',       cls: 'cat-biz',    bg: 't-grey' },
 };
 
 // ───────────────────────────────────────────────────────────
@@ -85,6 +101,7 @@ const HTML_FILES = [
   'mik-news.html',
   'mik-contact.html',
 ];
+
 HTML_FILES.forEach(f => {
   if (fs.existsSync(f)) {
     fs.copyFileSync(f, path.join('public', f));
@@ -95,7 +112,7 @@ HTML_FILES.forEach(f => {
 });
 
 if (fs.existsSync('sitemap.xml')) fs.copyFileSync('sitemap.xml', 'public/sitemap.xml');
-if (fs.existsSync('admin'))       fs.cpSync('admin', 'public/admin', { recursive: true });
+if (fs.existsSync('admin')) fs.cpSync('admin', 'public/admin', { recursive: true });
 
 // ───────────────────────────────────────────────────────────
 // 뉴스 처리
@@ -109,7 +126,12 @@ if (fs.existsSync(newsDir)) {
     .forEach(file => {
       const { meta, body } = parseMd(path.join(newsDir, file));
       const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace('.md', '');
-      allNews.push({ ...meta, slug, body });
+      allNews.push({
+        ...meta,
+        slug,
+        body,
+        tags: normalizeTags(meta.tags),
+      });
     });
 }
 
@@ -126,15 +148,17 @@ allNews.forEach(n => {
 
 // ── news-data.json (news 페이지에서 fetch) ─────────────────
 const newsData = allNews.map(n => ({
-  slug:      n.slug,
-  title:     n.title,
-  category:  n.category,
-  date:      n.date,
-  excerpt:   n.excerpt || '',
+  slug: n.slug,
+  title: n.title,
+  category: n.category,
+  date: n.date,
+  excerpt: n.excerpt || '',
   thumbnail: n.thumbnail || null,
-  featured:  n.featured || false,
+  featured: n.featured || false,
   external_url: n.external_url || null,
+  tags: n.tags || [],
 }));
+
 fs.writeFileSync('public/news-data.json', JSON.stringify(newsData, null, 2));
 console.log(`  news-data.json: ${newsData.length}건`);
 
@@ -143,12 +167,16 @@ console.log(`  news-data.json: ${newsData.length}건`);
 // ───────────────────────────────────────────────────────────
 const calDir = 'content/calendar';
 let calData  = [];
+
 if (fs.existsSync(calDir)) {
-  fs.readdirSync(calDir).filter(f => f.endsWith('.md')).forEach(f => {
-    const { meta } = parseMd(path.join(calDir, f));
-    calData.push(meta);
-  });
+  fs.readdirSync(calDir)
+    .filter(f => f.endsWith('.md'))
+    .forEach(f => {
+      const { meta } = parseMd(path.join(calDir, f));
+      calData.push(meta);
+    });
 }
+
 calData.sort((a, b) => (a.round || 0) - (b.round || 0));
 fs.writeFileSync('public/calendar-data.json', JSON.stringify(calData, null, 2));
 console.log(`  calendar-data.json: ${calData.length}건`);
@@ -158,12 +186,16 @@ console.log(`  calendar-data.json: ${calData.length}건`);
 // ───────────────────────────────────────────────────────────
 const galDir = 'content/gallery';
 let galData  = [];
+
 if (fs.existsSync(galDir)) {
-  fs.readdirSync(galDir).filter(f => f.endsWith('.md')).forEach(f => {
-    const { meta } = parseMd(path.join(galDir, f));
-    galData.push(meta);
-  });
+  fs.readdirSync(galDir)
+    .filter(f => f.endsWith('.md'))
+    .forEach(f => {
+      const { meta } = parseMd(path.join(galDir, f));
+      galData.push(meta);
+    });
 }
+
 galData.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 fs.writeFileSync('public/gallery-data.json', JSON.stringify(galData, null, 2));
 console.log(`  gallery-data.json: ${galData.length}건`);
@@ -174,10 +206,11 @@ console.log('\n✅  Build complete!');
 // 뉴스 상세 페이지 템플릿
 // ───────────────────────────────────────────────────────────
 function buildDetailPage(n, cat) {
-  const bodyHtml    = mdToHtml(n.body);
-  const thumbStyle  = n.thumbnail
+  const bodyHtml   = mdToHtml(n.body);
+  const thumbStyle = n.thumbnail
     ? `background:url('${n.thumbnail}') center/cover no-repeat;`
     : '';
+  const tagsArr = normalizeTags(n.tags);
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -186,10 +219,10 @@ function buildDetailPage(n, cat) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${n.title} — MIK</title>
 <meta name="description" content="${(n.excerpt || '').replace(/"/g, '&quot;').slice(0, 155)}">
-<meta property="og:title"       content="${n.title} — MIK">
+<meta property="og:title" content="${n.title} — MIK">
 <meta property="og:description" content="${(n.excerpt || '').replace(/"/g, '&quot;').slice(0, 155)}">
-<meta property="og:url"         content="https://www.miksports.com/news/${n.slug}">
-<meta property="og:type"        content="article">
+<meta property="og:url" content="https://www.miksports.com/news/${n.slug}">
+<meta property="og:type" content="article">
 ${n.thumbnail ? `<meta property="og:image" content="${n.thumbnail}">` : ''}
 <link rel="canonical" href="https://www.miksports.com/news/${n.slug}">
 <script type="application/ld+json">
@@ -282,7 +315,7 @@ h1.a-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(1.4
   <div class="a-body">${bodyHtml}</div>
 
   ${n.external_url ? `<a href="${n.external_url}" target="_blank" rel="noopener" class="ext-link">원문 기사 보기 →</a>` : ''}
-  ${(n.tags || []).length ? `<div class="a-tags">${(n.tags || []).map(t => `<span class="a-tag">${t}</span>`).join('')}</div>` : ''}
+  ${tagsArr.length ? `<div class="a-tags">${tagsArr.map(t => `<span class="a-tag">${t}</span>`).join('')}</div>` : ''}
 
   <a href="/mik-news.html" class="back">← 뉴스 목록으로</a>
 </div>
