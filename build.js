@@ -6,7 +6,7 @@
  * - public/news-data.json (뉴스 목록 — news 페이지에서 fetch)
  * - HTML 파일들 → public/ 복사
  */
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
 // ───────────────────────────────────────────────────────────
@@ -17,13 +17,15 @@ function ensure(dir) {
 }
 
 function parseMd(filepath) {
-  const raw   = fs.readFileSync(filepath, 'utf8');
+  const raw = fs.readFileSync(filepath, 'utf8');
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) return { meta: {}, body: raw };
+
   const meta = {};
   match[1].split('\n').forEach(line => {
     const colon = line.indexOf(':');
     if (colon < 0) return;
+
     const key = line.slice(0, colon).trim();
     let val = line.slice(colon + 1).trim().replace(/^["']|["']$/g, '');
 
@@ -33,22 +35,38 @@ function parseMd(filepath) {
 
     meta[key] = val;
   });
+
   return { meta, body: match[2].trim() };
 }
 
 function mdToHtml(md = '') {
   const lines = md.split('\n');
-  const out   = [];
-  let inList  = false;
+  const out = [];
+  let inList = false;
 
   for (const line of lines) {
-    if (line.startsWith('### '))      { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h3>${inline(line.slice(4))}</h3>`); }
-    else if (line.startsWith('## '))  { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h2>${inline(line.slice(3))}</h2>`); }
-    else if (line.startsWith('# '))   { if (inList) { out.push('</ul>'); inList = false; } out.push(`<h1>${inline(line.slice(2))}</h1>`); }
-    else if (line.startsWith('> '))   { if (inList) { out.push('</ul>'); inList = false; } out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`); }
-    else if (line.match(/^[-*] /))    { if (!inList) { out.push('<ul>'); inList = true; } out.push(`<li>${inline(line.slice(2))}</li>`); }
-    else if (line.trim() === '')      { if (inList) { out.push('</ul>'); inList = false; } out.push(''); }
-    else                              { if (inList) { out.push('</ul>'); inList = false; } out.push(`<p>${inline(line)}</p>`); }
+    if (line.startsWith('### ')) {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push(`<h3>${inline(line.slice(4))}</h3>`);
+    } else if (line.startsWith('## ')) {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push(`<h2>${inline(line.slice(3))}</h2>`);
+    } else if (line.startsWith('# ')) {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push(`<h1>${inline(line.slice(2))}</h1>`);
+    } else if (line.startsWith('> ')) {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`);
+    } else if (line.match(/^[-*] /)) {
+      if (!inList) { out.push('<ul>'); inList = true; }
+      out.push(`<li>${inline(line.slice(2))}</li>`);
+    } else if (line.trim() === '') {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push('');
+    } else {
+      if (inList) { out.push('</ul>'); inList = false; }
+      out.push(`<p>${inline(line)}</p>`);
+    }
   }
 
   if (inList) out.push('</ul>');
@@ -69,13 +87,36 @@ function fmtDate(d = '') {
 
 function normalizeTags(tags) {
   if (Array.isArray(tags)) return tags.filter(Boolean).map(String);
+
   if (typeof tags === 'string') {
     return tags
       .split(',')
       .map(s => s.trim())
       .filter(Boolean);
   }
+
   return [];
+}
+
+// 폴더 전체 복사
+function copyDir(src, dest) {
+  if (!fs.existsSync(src)) {
+    console.warn(`  WARN: ${src} not found`);
+    return;
+  }
+
+  ensure(dest);
+
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
 const CAT = {
@@ -88,7 +129,9 @@ const CAT = {
 // ───────────────────────────────────────────────────────────
 // 디렉토리 준비
 // ───────────────────────────────────────────────────────────
-['public', 'public/news', 'public/uploads'].forEach(ensure);
+ensure('public');
+ensure('public/news');
+ensure('public/uploads');
 
 // ───────────────────────────────────────────────────────────
 // HTML 파일 복사
@@ -112,8 +155,18 @@ HTML_FILES.forEach(f => {
   }
 });
 
-if (fs.existsSync('sitemap.xml')) fs.copyFileSync('sitemap.xml', 'public/sitemap.xml');
-if (fs.existsSync('admin')) fs.cpSync('admin', 'public/admin', { recursive: true });
+if (fs.existsSync('sitemap.xml')) {
+  fs.copyFileSync('sitemap.xml', 'public/sitemap.xml');
+  console.log('  copied: sitemap.xml');
+}
+
+// admin 폴더 복사
+if (fs.existsSync('admin')) {
+  copyDir('admin', 'public/admin');
+  console.log('  copied: admin/');
+} else {
+  console.warn('  WARN: admin folder not found');
+}
 
 // ───────────────────────────────────────────────────────────
 // 뉴스 처리
@@ -127,6 +180,7 @@ if (fs.existsSync(newsDir)) {
     .forEach(file => {
       const { meta, body } = parseMd(path.join(newsDir, file));
       const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace('.md', '');
+
       allNews.push({
         ...meta,
         slug,
@@ -141,7 +195,7 @@ allNews.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
 // ── 뉴스 상세 페이지 생성 ─────────────────────────────────
 allNews.forEach(n => {
-  const cat  = CAT[n.category] || CAT.notice;
+  const cat = CAT[n.category] || CAT.notice;
   const html = buildDetailPage(n, cat);
   fs.writeFileSync(`public/news/${n.slug}.html`, html);
   console.log(`  news detail: public/news/${n.slug}.html`);
@@ -167,7 +221,7 @@ console.log(`  news-data.json: ${newsData.length}건`);
 // 캘린더 JSON
 // ───────────────────────────────────────────────────────────
 const calDir = 'content/calendar';
-let calData  = [];
+let calData = [];
 
 if (fs.existsSync(calDir)) {
   fs.readdirSync(calDir)
@@ -186,7 +240,7 @@ console.log(`  calendar-data.json: ${calData.length}건`);
 // 갤러리 JSON
 // ───────────────────────────────────────────────────────────
 const galDir = 'content/gallery';
-let galData  = [];
+let galData = [];
 
 if (fs.existsSync(galDir)) {
   fs.readdirSync(galDir)
@@ -201,13 +255,13 @@ galData.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 fs.writeFileSync('public/gallery-data.json', JSON.stringify(galData, null, 2));
 console.log(`  gallery-data.json: ${galData.length}건`);
 
-console.log('\n✅  Build complete!');
+console.log('\n✅ Build complete!');
 
 // ───────────────────────────────────────────────────────────
 // 뉴스 상세 페이지 템플릿
 // ───────────────────────────────────────────────────────────
 function buildDetailPage(n, cat) {
-  const bodyHtml   = mdToHtml(n.body);
+  const bodyHtml = mdToHtml(n.body);
   const thumbStyle = n.thumbnail
     ? `background:url('${n.thumbnail}') center/cover no-repeat;`
     : '';
@@ -242,7 +296,6 @@ ${n.thumbnail ? `<meta property="og:image" content="${n.thumbnail}">` : ''}
 :root{--blue:#0055FF;--cyan:#00D9C8;--deep:#0a0a14;--mid:#444455;--sub:#888899;--line:#e4e4ec;--surface:#f5f5f8;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:#fff;color:var(--deep);font-family:'Pretendard',sans-serif;line-height:1.7;}
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(16px);}
 .logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1rem;text-decoration:none;color:var(--deep);display:flex;align-items:center;gap:8px;}
 .logo .b{color:var(--blue);}
@@ -251,7 +304,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;ali
 .nav-links a{color:var(--sub);text-decoration:none;font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
 .nav-links a:hover{color:var(--deep);}
 .nav-cta{background:var(--blue);color:#fff;padding:.5rem 1.2rem;border-radius:3px;font-size:.74rem;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:.1em;text-decoration:none;}
-/* ARTICLE */
 .container{max-width:840px;margin:0 auto;padding:112px 24px 100px;}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--sub);margin-bottom:22px;font-family:'Orbitron',sans-serif;letter-spacing:.08em;}
 .breadcrumb a{color:var(--sub);text-decoration:none;}
@@ -268,7 +320,8 @@ h1.a-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(1.4
 .a-thumb-placeholder{font-family:'Orbitron',sans-serif;font-weight:900;font-size:2rem;color:rgba(0,217,200,.25);}
 .a-body{font-size:.97rem;color:var(--mid);line-height:1.95;}
 .a-body h1,.a-body h2,.a-body h3{font-family:'Orbitron',sans-serif;font-weight:700;color:var(--deep);margin:2rem 0 .8rem;}
-.a-body h2{font-size:1.1rem;} .a-body h3{font-size:.95rem;}
+.a-body h2{font-size:1.1rem;}
+.a-body h3{font-size:.95rem;}
 .a-body p{margin-bottom:1.15rem;}
 .a-body strong{color:var(--deep);font-weight:600;}
 .a-body em{font-style:italic;}
