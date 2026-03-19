@@ -1,0 +1,12 @@
+{
+  "name": "mik-website",
+  "version": "1.0.0",
+  "description": "㈜MIK 공식 홈페이지",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && npx serve public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

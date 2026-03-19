@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+locale: ko
+
+collections:
+
+  # ── 뉴스 ──────────────────────────────────────────────────
+  - name: news
+    label: "뉴스"
+    label_singular: "뉴스 글"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title, category]
+    summary: "{{category}} | {{title}} ({{date}})"
+    fields:
+      - { label: "제목",         name: title,       widget: string }
+      - label: "카테고리"
+        name: category
+        widget: select
+        options:
+          - { label: "보도자료",      value: press  }
+          - { label: "레이스 리포트", value: race   }
+          - { label: "공지사항",      value: notice }
+          - { label: "비즈니스",      value: biz    }
+        default: notice
+      - { label: "발행일",       name: date,        widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: "썸네일 이미지", name: thumbnail,  widget: image,   required: false, hint: "권장 800×480px. 없으면 카테고리 색상 배경 표시" }
+      - { label: "요약 (목록용)", name: excerpt,    widget: text,    hint: "카드에 표시되는 한두 줄 요약 (100자 이내)" }
+      - { label: "본문",         name: body,        widget: markdown }
+      - { label: "피처드 (메인 상단 노출)", name: featured, widget: boolean, default: false }
+      - { label: "외부 링크 (선택)", name: external_url, widget: string, required: false, hint: "언론사 원문 URL 등" }
+      - { label: "태그",         name: tags,        widget: list,    required: false }
+
+  # ── 레이스 캘린더 ──────────────────────────────────────────
+  - name: calendar
+    label: "레이스 일정"
+    label_singular: "라운드"
+    folder: "content/calendar"
+    create: true
+    slug: "{{year}}-rd{{fields.round}}"
+    sortable_fields: [round, date]
+    summary: "RD{{round}} | {{title}} ({{date}})"
+    fields:
+      - { label: "라운드",  name: round,    widget: number, value_type: int, min: 1, max: 10 }
+      - { label: "대회명",  name: title,    widget: string, hint: "예: 현대 N 페스티벌 Round 1" }
+      - { label: "날짜",    name: date,     widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: "개최지",  name: location, widget: string, hint: "예: 인제 스피디움" }
+      - label: "상태"
+        name: status
+        widget: select
+        options:
+          - { label: "예정",    value: upcoming }
+          - { label: "진행 중", value: live     }
+          - { label: "완료",    value: done     }
+          - { label: "미정",    value: tbd      }
+        default: upcoming
+      - { label: "결과 (완료 후)", name: result, widget: text, required: false, hint: "예: 오한솔 3위 / 한재희 DNF" }
+
+  # ── 갤러리 ──────────────────────────────────────────────
+  - name: gallery
+    label: "갤러리"
+    label_singular: "갤러리 항목"
+    folder: "content/gallery"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} ({{date}})"
+    fields:
+      - { label: "제목",  name: title,       widget: string }
+      - { label: "날짜",  name: date,        widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: "이미지", name: image,      widget: image, hint: "권장 1200×800px" }
+      - { label: "설명",  name: description, widget: text, required: false }
+      - label: "카테고리"
+        name: category
+        widget: select
+        options:
+          - { label: "레이스 현장", value: race   }
+          - { label: "팀 공식 사진", value: team  }
+          - { label: "드라이버",    value: driver }
+          - { label: "이벤트",      value: event  }
+        default: race

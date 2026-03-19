@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="㈜MIK Identity — Beyond Motion, Toward Emotion. Motion In Korea의 의미, CEO 인사말, 비전과 핵심 가치.">
+<meta name="keywords" content="MIK, Motion In Korea, 모터스포츠, 비전, CEO, 브랜드 아이덴티티">
+<meta property="og:title" content="Identity — ㈜MIK">
+<meta property="og:description" content="Beyond Motion, Toward Emotion — Motion In Korea의 철학과 비전">
+<title>Identity — MIK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0055FF;
+    --cyan: #00D9C8;
+    --black: #000000;
+    --graphite: #0D0D1A;
+    --graphite2: #1A1A2E;
+    --graphite3: #111122;
+    --titanium: #8A8A9A;
+    --white: #FFFFFF;
+    --grad: linear-gradient(135deg, #0055FF, #00D9C8);
+    --nav-h: 72px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(0,0,0,0.92);
+    border-bottom: 1px solid rgba(0,85,255,0.2);
+    backdrop-filter: blur(16px);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 1.15rem; letter-spacing: .08em;
+    text-decoration: none; color: var(--white);
+  }
+  .nav-logo .blue { color: var(--blue); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--titanium); text-decoration: none;
+    font-size: .8rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
+    transition: color .2s; position: relative; padding-bottom: 4px;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a.active { color: var(--white); }
+  .nav-links a.active::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--grad); border-radius: 2px;
+  }
+  .nav-cta {
+    background: var(--grad); color: var(--white);
+    padding: .55rem 1.4rem; border-radius: 3px;
+    font-size: .78rem; font-weight: 700; font-family: 'Orbitron', sans-serif;
+    letter-spacing: .1em; text-decoration: none;
+    transition: opacity .2s, transform .15s;
+  }
+  .nav-cta:hover { opacity: .85; transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+  .mobile-menu {
+    display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: rgba(0,0,0,.97); border-top: 1px solid rgba(0,85,255,.2);
+    padding: 32px 28px; z-index: 999; flex-direction: column; gap: 24px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--titanium); text-decoration: none;
+    font-family: 'Orbitron', sans-serif; font-size: .85rem; letter-spacing: .15em;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.06); transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--white); }
+  .mobile-menu .btn-primary { text-align: center; padding: .9rem; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: var(--grad); color: var(--white); padding: .85rem 2.2rem;
+    border-radius: 3px; font-family: 'Orbitron', sans-serif; font-size: .8rem;
+    font-weight: 700; letter-spacing: .1em; text-decoration: none;
+    transition: transform .15s, opacity .2s, box-shadow .2s; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,85,255,.4); opacity: .9; }
+  .btn-ghost {
+    border: 1px solid rgba(0,85,255,.5); color: rgba(255,255,255,.8);
+    padding: .85rem 2.2rem; border-radius: 3px;
+    font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700;
+    letter-spacing: .1em; text-decoration: none; display: inline-block;
+    transition: border-color .2s, color .2s, transform .15s;
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--white); transform: translateY(-2px); }
+
+  /* ── PAGE HERO ── */
+  #page-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding: var(--nav-h) 48px 0;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; background: var(--black);
+  }
+  /* 왼쪽 대각 슬래시 장식 — 속도감 */
+  .hero-slash {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: linear-gradient(160deg, rgba(0,85,255,.06) 0%, transparent 55%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+  }
+  .hero-slash2 {
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(160deg, rgba(0,217,200,.04) 0%, transparent 60%);
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,85,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,85,255,.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 15% 60%, black 30%, transparent 100%);
+  }
+  /* 오른쪽 그래픽 원형 */
+  .hero-circle-outer {
+    position: absolute;
+    right: -80px; top: 50%; transform: translateY(-50%);
+    width: 640px; height: 640px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,85,255,.12);
+    pointer-events: none;
+  }
+  .hero-circle-inner {
+    position: absolute;
+    right: 0px; top: 50%; transform: translateY(-50%);
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,217,200,.1);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    right: 80px; top: 50%; transform: translateY(-50%);
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,85,255,.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2; max-width: 1300px; margin: 0 auto;
+    width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .hero-left {}
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: var(--titanium); margin-bottom: 28px;
+    font-family: 'Orbitron', sans-serif; letter-spacing: .1em;
+  }
+  .breadcrumb a { color: var(--titanium); text-decoration: none; transition: color .2s; }
+  .breadcrumb a:hover { color: var(--blue); }
+  .breadcrumb .sep { color: rgba(255,255,255,.2); }
+  .breadcrumb .current { color: var(--blue); }
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .eyebrow-line { width: 40px; height: 2px; background: var(--blue); }
+  .eyebrow-text {
+    font-family: 'Orbitron', sans-serif; font-size: .72rem;
+    letter-spacing: .35em; color: var(--blue); text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1.05; margin-bottom: 28px;
+  }
+  .hero-title .grad {
+    background: var(--grad); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-desc {
+    color: var(--titanium); font-size: clamp(.9rem, 1.4vw, 1.05rem);
+    line-height: 1.85; margin-bottom: 40px; max-width: 480px;
+  }
+
+  /* 오른쪽 — 슬로건 타이포 박스 */
+  .hero-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0;
+  }
+  .slogan-box {
+    position: relative; text-align: right;
+  }
+  .slogan-en {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    letter-spacing: .12em; color: var(--titanium);
+    margin-bottom: 8px; line-height: 1.3;
+  }
+  .slogan-main {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    line-height: 1.05; margin-bottom: 6px;
+  }
+  .slogan-main .w1 { color: var(--white); }
+  .slogan-main .w2 {
+    background: var(--grad); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .slogan-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to left, var(--blue), transparent);
+    margin: 20px 0;
+  }
+  .slogan-kr {
+    font-size: clamp(.88rem, 1.3vw, 1rem); color: var(--titanium);
+    line-height: 1.9; font-weight: 300;
+  }
+  .slogan-kr strong { color: var(--white); font-weight: 600; }
+
+  /* scroll hint */
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeIn 1s 1s forwards;
+  }
+  .scroll-hint span { font-size: .65rem; letter-spacing: .25em; color: var(--titanium); text-transform: uppercase; }
+  .scroll-dot { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--blue), transparent); animation: scrollDot 1.8s ease-in-out infinite; }
+  @keyframes scrollDot { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.5);opacity:.4} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: .1s; }
+  .reveal-d2 { transition-delay: .2s; }
+  .reveal-d3 { transition-delay: .3s; }
+  .reveal-d4 { transition-delay: .4s; }
+
+  /* ── SECTION COMMON ── */
+  .wrap { max-width: 1300px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Orbitron', sans-serif; font-size: .7rem;
+    letter-spacing: .3em; color: var(--blue); margin-bottom: 14px;
+  }
+  .section-h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem); line-height: 1.15; margin-bottom: 20px;
+  }
+  .section-h2 .c { color: var(--cyan); }
+  .section-lead {
+    color: var(--titanium); font-size: .97rem; line-height: 1.85;
+    max-width: 580px; margin-bottom: 56px;
+  }
+  .section-divider {
+    max-width: 1300px; margin: 0 auto;
+    border: none; border-top: 1px solid rgba(0,85,255,.08);
+  }
+
+  /* ── SECTION 1: NAME MEANING ── */
+  #meaning {
+    padding: 120px 48px;
+    background: var(--graphite3);
+    position: relative; overflow: hidden;
+  }
+  #meaning::before {
+    content: ''; position: absolute;
+    right: -150px; top: -150px; width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,85,255,.09) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .meaning-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  /* 왼쪽 — 텍스트 해부 그래픽 */
+  .meaning-graphic {
+    background: var(--graphite2); border: 1px solid rgba(0,85,255,.2);
+    border-radius: 6px; padding: 48px 40px; position: relative; overflow: hidden;
+  }
+  .meaning-graphic::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,85,255,.07), transparent 55%);
+    pointer-events: none;
+  }
+  .mg-label {
+    font-family: 'Orbitron', sans-serif; font-size: .68rem;
+    letter-spacing: .3em; color: var(--titanium); margin-bottom: 32px;
+  }
+  .mg-word {
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid rgba(0,85,255,.12);
+    position: relative;
+  }
+  .mg-word:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .mg-en {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 2rem; line-height: 1; margin-bottom: 8px;
+  }
+  .mg-en.blue { color: var(--blue); }
+  .mg-en.cyan { color: var(--cyan); }
+  .mg-en.white { color: var(--white); opacity: .6; }
+  .mg-kr { font-size: .85rem; color: var(--titanium); line-height: 1.6; }
+  .mg-kr strong { color: var(--white); font-weight: 600; }
+  .mg-arrow {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    font-family: 'Orbitron', sans-serif; font-size: .7rem;
+    color: rgba(0,85,255,.4); letter-spacing: .1em;
+  }
+
+  /* 오른쪽 */
+  .meaning-right {}
+  .meaning-concept {
+    background: var(--graphite2); border: 1px solid rgba(0,217,200,.15);
+    border-radius: 6px; padding: 36px; margin-bottom: 28px; position: relative; overflow: hidden;
+  }
+  .meaning-concept::before {
+    content: ''; position: absolute;
+    top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,217,200,.08), transparent 70%);
+  }
+  .mc-tag {
+    font-family: 'Orbitron', sans-serif; font-size: .65rem;
+    letter-spacing: .25em; color: var(--cyan); margin-bottom: 14px;
+  }
+  .mc-quote {
+    font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 600;
+    line-height: 1.65; margin-bottom: 16px;
+  }
+  .mc-quote .hl { color: var(--cyan); }
+  .mc-desc { font-size: .85rem; color: var(--titanium); line-height: 1.8; }
+
+  .meaning-flow {
+    display: flex; align-items: center; gap: 0;
+  }
+  .mf-step {
+    flex: 1; background: var(--graphite); border: 1px solid rgba(255,255,255,.05);
+    padding: 20px 16px; text-align: center; position: relative;
+    transition: border-color .25s, background .25s;
+  }
+  .mf-step:hover { border-color: rgba(0,85,255,.3); background: rgba(0,85,255,.04); }
+  .mf-step-word {
+    font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .mf-step-word.blue { color: var(--blue); }
+  .mf-step-word.cyan { color: var(--cyan); }
+  .mf-step-desc { font-size: .72rem; color: var(--titanium); }
+  .mf-arrow {
+    width: 28px; flex-shrink: 0; text-align: center;
+    color: rgba(0,85,255,.5); font-size: 1rem; font-weight: 700;
+  }
+
+  /* ── SECTION 2: CEO ── */
+  #ceo {
+    padding: 120px 48px;
+  }
+  .ceo-layout {
+    display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start;
+  }
+  /* CEO 프로필 카드 */
+  .ceo-card {
+    position: sticky; top: calc(var(--nav-h) + 32px);
+  }
+  .ceo-photo-wrap {
+    background: var(--graphite2); border: 1px solid rgba(0,85,255,.2);
+    border-radius: 6px; overflow: hidden; margin-bottom: 2px;
+    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .ceo-photo-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,85,255,.12), rgba(0,217,200,.06));
+  }
+  .ceo-photo-placeholder {
+    position: relative; z-index: 1; text-align: center;
+  }
+  .ceo-initials {
+    font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 4rem;
+    background: var(--grad); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .ceo-photo-note { font-size: .72rem; color: var(--titanium); letter-spacing: .1em; }
+  .ceo-info {
+    background: var(--graphite2); border: 1px solid rgba(0,85,255,.15);
+    padding: 24px 28px;
+    border-radius: 0 0 6px 6px;
+  }
+  .ceo-name { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+  .ceo-title { font-size: .8rem; color: var(--titanium); margin-bottom: 14px; }
+  .ceo-career { display: flex; flex-direction: column; gap: 8px; }
+  .ceo-career-item {
+    display: flex; gap: 10px; align-items: flex-start; font-size: .78rem;
+  }
+  .ceo-career-item::before { content: '—'; color: var(--blue); flex-shrink: 0; }
+  .ceo-career-item span { color: var(--titanium); line-height: 1.5; }
+
+  /* CEO 인사말 본문 */
+  .ceo-message {}
+  .ceo-msg-tag {
+    font-family: 'Orbitron', sans-serif; font-size: .7rem;
+    letter-spacing: .3em; color: var(--blue); margin-bottom: 24px;
+  }
+  .ceo-msg-greeting {
+    font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700;
+    line-height: 1.35; margin-bottom: 32px; color: var(--white);
+  }
+  .ceo-msg-greeting .hl { color: var(--cyan); }
+  .ceo-msg-body { display: flex; flex-direction: column; gap: 24px; }
+  .ceo-msg-para {
+    font-size: .95rem; color: var(--titanium); line-height: 1.95; font-weight: 300;
+  }
+  .ceo-msg-para strong { color: var(--white); font-weight: 600; }
+  .ceo-msg-emphasis {
+    background: var(--graphite2); border-left: 3px solid var(--blue);
+    padding: 20px 24px; border-radius: 0 4px 4px 0;
+    font-size: 1rem; line-height: 1.7; font-weight: 500; color: var(--white);
+  }
+  .ceo-msg-emphasis .en {
+    display: block; font-family: 'Orbitron', sans-serif; font-size: .78rem;
+    letter-spacing: .12em; color: var(--cyan); margin-top: 10px;
+  }
+  .ceo-signature {
+    margin-top: 40px; padding-top: 32px;
+    border-top: 1px solid rgba(0,85,255,.12);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  }
+  .ceo-sig-left {}
+  .ceo-sig-company { font-size: .78rem; color: var(--titanium); margin-bottom: 6px; }
+  .ceo-sig-name-kr {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 1.1rem; margin-bottom: 4px; color: var(--white);
+  }
+  .ceo-sig-role { font-size: .78rem; color: var(--titanium); }
+  .ceo-sig-badge {
+    background: rgba(0,85,255,.08); border: 1px solid rgba(0,85,255,.2);
+    padding: 12px 20px; border-radius: 4px; text-align: center;
+  }
+  .ceo-sig-badge-en {
+    font-family: 'Orbitron', sans-serif; font-size: .72rem;
+    letter-spacing: .1em; color: var(--blue); margin-bottom: 4px;
+  }
+  .ceo-sig-badge-kr { font-size: .75rem; color: var(--titanium); }
+
+  /* ── SECTION 3: VISION & MISSION ── */
+  #vision {
+    padding: 120px 48px;
+    background: var(--graphite3);
+    position: relative; overflow: hidden;
+  }
+  .vision-glow {
+    position: absolute; left: -200px; bottom: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,217,200,.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .vision-top {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px;
+  }
+  .vm-card {
+    padding: 48px 44px; border: 1px solid rgba(255,255,255,.04);
+    position: relative; overflow: hidden; transition: border-color .3s;
+  }
+  .vm-card:hover { border-color: rgba(0,85,255,.3); }
+  .vm-card.vision-card { background: var(--graphite2); }
+  .vm-card.mission-card { background: var(--graphite); }
+  .vm-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--grad); opacity: 0; transition: opacity .3s;
+  }
+  .vm-card:hover::before { opacity: .04; }
+  .vm-type {
+    font-family: 'Orbitron', sans-serif; font-size: .68rem;
+    letter-spacing: .3em; margin-bottom: 16px; position: relative;
+  }
+  .vm-type.v { color: var(--blue); }
+  .vm-type.m { color: var(--cyan); }
+  .vm-statement {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.1rem, 2vw, 1.55rem); line-height: 1.3;
+    margin-bottom: 16px; position: relative;
+  }
+  .vm-statement .hl { color: var(--cyan); }
+  .vm-desc { font-size: .88rem; color: var(--titanium); line-height: 1.8; position: relative; }
+
+  /* 핵심 가치 4개 */
+  .values-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+  .value-card {
+    background: var(--graphite); border: 1px solid rgba(255,255,255,.04);
+    padding: 36px 28px; position: relative; overflow: hidden;
+    cursor: pointer; transition: border-color .3s, background .3s;
+  }
+  .value-card:hover { border-color: rgba(0,85,255,.35); background: rgba(0,85,255,.04); }
+  .value-num {
+    font-family: 'Orbitron', sans-serif; font-size: .65rem;
+    letter-spacing: .25em; color: var(--blue); margin-bottom: 20px;
+  }
+  /* 키워드별 아이콘 — SVG 인라인 */
+  .value-icon { margin-bottom: 20px; }
+  .value-keyword {
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .value-keyword.dyn { color: var(--blue); }
+  .value-keyword.pro { color: var(--cyan); }
+  .value-keyword.sol { color: var(--white); }
+  .value-keyword.con { color: var(--blue); }
+  .value-hash {
+    font-size: .72rem; color: var(--titanium); margin-bottom: 12px;
+    font-family: 'Orbitron', sans-serif; letter-spacing: .05em;
+  }
+  .value-desc { font-size: .82rem; color: var(--titanium); line-height: 1.75; }
+
+  /* ── SECTION 4: HISTORY / TIMELINE ── */
+  #history {
+    padding: 120px 48px;
+  }
+  .timeline-layout {
+    display: grid; grid-template-columns: 1fr 3fr; gap: 64px; align-items: start;
+  }
+  .timeline-left {
+    position: sticky; top: calc(var(--nav-h) + 32px);
+  }
+  .timeline-tagline {
+    font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; line-height: 1.5;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .timeline-tagline .hl { color: var(--cyan); }
+  .timeline-subdesc { font-size: .85rem; color: var(--titanium); line-height: 1.8; }
+
+  .timeline-items { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 80px 1fr; gap: 0;
+    border-bottom: 1px solid rgba(0,85,255,.08);
+    padding: 28px 0;
+  }
+  .tl-item:first-child { padding-top: 0; }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-year {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: .9rem; color: var(--blue); padding-top: 3px;
+    letter-spacing: .05em;
+  }
+  .tl-body {}
+  .tl-title { font-weight: 700; font-size: .95rem; margin-bottom: 6px; line-height: 1.4; }
+  .tl-desc { font-size: .82rem; color: var(--titanium); line-height: 1.7; }
+  .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .tl-tag {
+    font-size: .68rem; color: var(--cyan);
+    border: 1px solid rgba(0,217,200,.2); padding: .2rem .55rem; border-radius: 2px;
+    font-family: 'Orbitron', sans-serif;
+  }
+  /* 현재진행형 아이템 강조 */
+  .tl-item.current .tl-year { color: var(--cyan); }
+  .tl-item.current .tl-title { color: var(--white); }
+  .tl-live-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: .68rem; font-family: 'Orbitron', sans-serif;
+    color: var(--cyan); letter-spacing: .12em; margin-bottom: 6px;
+  }
+  .tl-live-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  /* ── SECTION 5: IDENTITY KEYWORDS ── */
+  #keywords {
+    padding: 0 48px 120px;
+  }
+  .kw-wall {
+    background: var(--graphite2); border: 1px solid rgba(0,85,255,.15);
+    border-radius: 6px; padding: 64px;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .kw-wall::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 80% 50%, rgba(0,85,255,.07), transparent 65%);
+    pointer-events: none;
+  }
+  .kw-left {}
+  .kw-left-tag {
+    font-family: 'Orbitron', sans-serif; font-size: .7rem;
+    letter-spacing: .3em; color: var(--blue); margin-bottom: 16px;
+  }
+  .kw-left-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; margin-bottom: 16px;
+  }
+  .kw-left-desc { font-size: .88rem; color: var(--titanium); line-height: 1.8; }
+  .kw-right {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; position: relative;
+  }
+  .kw-item {
+    background: rgba(0,0,0,.3); padding: 24px 20px;
+    border: 1px solid rgba(255,255,255,.04);
+    transition: border-color .25s, background .25s;
+  }
+  .kw-item:hover { border-color: rgba(0,85,255,.3); background: rgba(0,85,255,.06); }
+  .kw-hash {
+    font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .kw-hash.b { color: var(--blue); }
+  .kw-hash.c { color: var(--cyan); }
+  .kw-hash.w { color: rgba(255,255,255,.7); }
+  .kw-meaning { font-size: .78rem; color: var(--titanium); line-height: 1.6; }
+
+  /* ── CTA ── */
+  #identity-cta { padding: 0 48px 120px; }
+  .cta-box {
+    background: var(--graphite2); border: 1px solid rgba(0,85,255,.2);
+    padding: 80px 64px; text-align: center; position: relative; overflow: hidden; border-radius: 4px;
+  }
+  .cta-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,85,255,.08), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-tag { font-family: 'Orbitron', sans-serif; font-size: .7rem; letter-spacing: .3em; color: var(--blue); margin-bottom: 20px; }
+  .cta-title { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 2.8vw, 2.2rem); margin-bottom: 14px; position: relative; }
+  .cta-desc { color: var(--titanium); font-size: .95rem; line-height: 1.8; max-width: 480px; margin: 0 auto 36px; position: relative; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--graphite); border-top: 1px solid rgba(0,85,255,.12); padding: 48px;
+  }
+  .footer-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px;
+  }
+  .footer-brand .logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem; color: var(--white); margin-bottom: 12px; }
+  .footer-brand .logo span { color: var(--blue); }
+  .footer-brand p { font-size: .8rem; color: var(--titanium); line-height: 1.7; }
+  .footer-col h4 { font-family: 'Orbitron', sans-serif; font-size: .68rem; letter-spacing: .2em; color: var(--blue); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul a { color: var(--titanium); text-decoration: none; font-size: .82rem; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1300px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,.06); padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p { font-size: .75rem; color: var(--titanium); }
+  .footer-email a { font-size: .78rem; color: var(--blue); text-decoration: none; }
+  .footer-email a:hover { color: var(--cyan); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 28px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    #page-hero { padding: calc(var(--nav-h) + 48px) 28px 80px; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-circle-outer, .hero-circle-inner, .hero-glow { display: none; }
+    .hero-right { align-items: flex-start; }
+    #meaning { padding: 80px 28px; }
+    .meaning-layout { grid-template-columns: 1fr; gap: 40px; }
+    #ceo { padding: 80px 28px; }
+    .ceo-layout { grid-template-columns: 1fr; gap: 48px; }
+    .ceo-card { position: static; }
+    #vision { padding: 80px 28px; }
+    .vision-top { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: repeat(2,1fr); }
+    #history { padding: 80px 28px; }
+    .timeline-layout { grid-template-columns: 1fr; gap: 40px; }
+    .timeline-left { position: static; }
+    #keywords { padding: 0 28px 80px; }
+    .kw-wall { grid-template-columns: 1fr; padding: 40px 28px; gap: 40px; }
+    #identity-cta { padding: 0 28px 80px; }
+    .cta-box { padding: 48px 28px; }
+    footer { padding: 40px 28px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .kw-right { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .meaning-flow { flex-direction: column; }
+    .mf-arrow { transform: rotate(90deg); }
+  }
+</style>
+
+<!-- ★ 구조화 데이터 (Google 검색 최적화) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Identity — ㈜MIK",
+  "url": "https://www.miksports.com/identity",
+  "description": "㈜MIK의 브랜드 철학, CEO 인사말, 비전과 핵심 가치.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem","position": 1,"name": "Home","item": "https://www.miksports.com/"},
+      {"@type": "ListItem","position": 2,"name": "Identity","item": "https://www.miksports.com/identity"}
+    ]
+  }
+}
+</script>
+<link rel="canonical" href="https://www.miksports.com/identity">
+<meta property="og:url" content="https://www.miksports.com/identity">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MIK | Motion In Korea">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="mik-homepage.html" class="nav-logo"><span class="blue">MIK</span> | MOTION IN KOREA</a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">IDENTITY</a></li>
+    <li><a href="mik-business.html">BUSINESS</a></li>
+    <li><a href="mik-homepage.html#assets">RACING</a></li>
+    <li><a href="mik-homepage.html#news">NEWS</a></li>
+    <li><a href="mik-homepage.html#contact">CONTACT</a></li>
+  </ul>
+  <a href="mailto:dkyang@miksports.com" class="nav-cta">CONTACT US</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="toggleMenu()">IDENTITY</a>
+  <a href="mik-business.html" onclick="toggleMenu()">BUSINESS</a>
+  <a href="mik-homepage.html#assets" onclick="toggleMenu()">RACING</a>
+  <a href="mik-homepage.html#news" onclick="toggleMenu()">NEWS</a>
+  <a href="mik-homepage.html#contact" onclick="toggleMenu()">CONTACT</a>
+  <a href="mailto:dkyang@miksports.com" class="btn-primary">CONTACT US</a>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE HERO
+══════════════════════════════ -->
+<section id="page-hero">
+  <div class="hero-bg">
+    <div class="hero-slash"></div>
+    <div class="hero-slash2"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-circle-outer"></div>
+  <div class="hero-circle-inner"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content wrap">
+    <div class="hero-left">
+      <div class="breadcrumb" style="animation: fadeUp .6s .1s both;">
+        <a href="mik-homepage.html">HOME</a>
+        <span class="sep">/</span>
+        <span class="current">IDENTITY</span>
+      </div>
+      <div class="page-eyebrow" style="animation: fadeUp .6s .2s both;">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">01 Identity</span>
+      </div>
+      <h1 class="hero-title" style="animation: fadeUp .7s .3s both;">
+        우리가 만드는<br>것은 <span class="grad">감동</span>입니다
+      </h1>
+      <p class="hero-desc" style="animation: fadeUp .7s .45s both;">
+        ㈜MIK는 모터스포츠라는 움직임을 통해<br>
+        사람과 브랜드, 사회를 연결하는 기업입니다.<br>
+        Motion이 수단이라면, Emotion은 우리의 목적입니다.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; animation: fadeUp .7s .6s both;">
+        <a href="#meaning" class="btn-primary">브랜드 스토리</a>
+        <a href="#ceo" class="btn-ghost">CEO 인사말</a>
+      </div>
+    </div>
+
+    <div class="hero-right" style="animation: fadeUp .8s .5s both;">
+      <div class="slogan-box">
+        <div class="slogan-en">㈜MIK — Motion In Korea</div>
+        <div class="slogan-main">
+          <div class="w1">BEYOND MOTION,</div>
+          <div class="w2">TOWARD EMOTION.</div>
+        </div>
+        <div class="slogan-divider"></div>
+        <div class="slogan-kr">
+          모터스포츠의 <strong>'움직임(Motion)'</strong>이란 수단을 넘어,<br>
+          <strong>'감동(Emotion)'</strong>이라는 목적으로 나아가는<br>
+          흐름을 만드는 기업.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SECTION 1: NAME MEANING
+══════════════════════════════ -->
+<section id="meaning">
+  <div class="wrap">
+    <div class="section-label reveal">Brand Name</div>
+    <h2 class="section-h2 reveal">Motion In <span class="c">Korea</span>의 의미</h2>
+    <p class="section-lead reveal">세 단어가 만나 하나의 철학을 완성합니다. M·I·K — 이름 안에 담긴 우리의 정체성입니다.</p>
+
+    <div class="meaning-layout">
+      <!-- 왼쪽: 단어 해부 카드 -->
+      <div class="meaning-graphic reveal">
+        <div class="mg-label">MIK FULL NAME BREAKDOWN</div>
+        <div class="mg-word">
+          <div class="mg-en blue">MOTION</div>
+          <div class="mg-kr"><strong>움직임 · 변화 · 역동성</strong><br>정체된 것을 흔들고, 새로운 흐름을 만드는 힘. 레이싱카가 트랙을 달리듯, 우리는 산업을 움직입니다.</div>
+          <div class="mg-arrow">M →</div>
+        </div>
+        <div class="mg-word">
+          <div class="mg-en white">IN</div>
+          <div class="mg-kr"><strong>안에서 · 현장에서 · 함께</strong><br>모터스포츠 생태계 안에 깊숙이 들어가 현장과 함께 호흡하는 기업.</div>
+          <div class="mg-arrow">I →</div>
+        </div>
+        <div class="mg-word">
+          <div class="mg-en cyan">KOREA</div>
+          <div class="mg-kr"><strong>한국 · 정체성 · 글로벌 출발점</strong><br>한국 모터스포츠를 세계 수준으로 끌어올리겠다는 MIK의 출발점이자 자부심.</div>
+          <div class="mg-arrow">K →</div>
+        </div>
+      </div>
+
+      <!-- 오른쪽: 컨셉 + 흐름 -->
+      <div class="meaning-right reveal reveal-d1">
+        <div class="meaning-concept">
+          <div class="mc-tag">BRAND CONCEPT</div>
+          <div class="mc-quote">
+            모터스포츠의 <span class="hl">'움직임(Motion)'</span>이란 수단을 넘어,<br>
+            <span class="hl">'감동(Emotion)'</span>이라는 목적으로 나아가는 흐름을 만드는 기업.
+          </div>
+          <div class="mc-desc">
+            MIK는 단순히 레이스를 운영하지 않습니다. 레이싱카가 달리는 매 순간이
+            관중에게는 감동이 되고, 스폰서에게는 가치가 되고, 드라이버에게는 성장이 됩니다.
+            우리는 그 모든 연결고리를 설계합니다.
+          </div>
+        </div>
+
+        <div class="meaning-flow">
+          <div class="mf-step">
+            <div class="mf-step-word blue">MOTION</div>
+            <div class="mf-step-desc">수단 · 출발</div>
+          </div>
+          <div class="mf-arrow">→</div>
+          <div class="mf-step">
+            <div class="mf-step-word white" style="color:rgba(255,255,255,.6)">BUSINESS</div>
+            <div class="mf-step-desc">연결 · 설계</div>
+          </div>
+          <div class="mf-arrow">→</div>
+          <div class="mf-step">
+            <div class="mf-step-word cyan">EMOTION</div>
+            <div class="mf-step-desc">목적 · 가치</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════
+     SECTION 2: CEO MESSAGE
+══════════════════════════════ -->
+<section id="ceo">
+  <div class="wrap">
+    <div class="section-label reveal">CEO Message</div>
+    <h2 class="section-h2 reveal">대표 <span class="c">인사말</span></h2>
+
+    <div class="ceo-layout">
+      <!-- 프로필 카드 -->
+      <div class="ceo-card reveal">
+        <div class="ceo-photo-wrap">
+          <div class="ceo-photo-placeholder">
+            <div class="ceo-initials">김동빈</div>
+            <div class="ceo-photo-note">CEO PHOTO</div>
+          </div>
+        </div>
+        <div class="ceo-info">
+          <div class="ceo-name">김동빈</div>
+          <div class="ceo-title">㈜MIK 대표이사 / MIK Racing en1 대표</div>
+          <div class="ceo-career">
+            <div class="ceo-career-item"><span>전 슈퍼레이스 프로 드라이버</span></div>
+            <div class="ceo-career-item"><span>MIK Racing en1 창단 대표</span></div>
+            <div class="ceo-career-item"><span>현대 N 페스티벌 eN1 클래스 참전 2026</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 인사말 본문 -->
+      <div class="ceo-message reveal reveal-d1">
+        <div class="ceo-msg-tag">CEO MESSAGE — 2026</div>
+        <div class="ceo-msg-greeting">
+          모터스포츠를 통해<br>
+          <span class="hl">더 큰 감동을 만들겠습니다.</span>
+        </div>
+
+        <div class="ceo-msg-body">
+          <p class="ceo-msg-para">
+            안녕하십니까, ㈜MIK 대표이사 김동빈입니다.
+            저는 레이싱 드라이버로서 트랙 위에서 속도와 싸워왔고,
+            그 경험이 <strong>모터스포츠 비즈니스라는 새로운 레이스</strong>로 저를 이끌었습니다.
+          </p>
+          <p class="ceo-msg-para">
+            MIK는 단순한 이벤트 회사가 아닙니다.
+            우리는 <strong>레이싱카가 달리는 순간의 감동</strong>을 팬에게, 파트너에게, 그리고 산업 전체에 전달하는
+            플랫폼을 만들고자 합니다. 대회 기획부터 드라이버 육성, 스폰서십 설계, 레이싱팀 운영까지 —
+            모터스포츠 생태계 전반을 하나의 시스템으로 연결하는 것이 우리의 비전입니다.
+          </p>
+          <div class="ceo-msg-emphasis">
+            레이서가 가장 잘 아는 것은, 결승선이 끝이 아니라<br>
+            다음 레이스의 시작이라는 것입니다.<br>
+            <span class="en">— MIK는 지금, 그 출발선에 서 있습니다.</span>
+          </div>
+          <p class="ceo-msg-para">
+            MIK Racing en1을 통해 전기차 레이싱의 최전선에서 기술을 검증하고,
+            인제 마스터즈와 같은 대회를 통해 팬과 직접 소통하며,
+            소속 드라이버들의 꿈을 함께 키워가겠습니다.
+            <strong>모터스포츠가 단순한 스포츠를 넘어 하나의 문화와 산업이 되는 날</strong>까지,
+            MIK는 멈추지 않겠습니다.
+          </p>
+        </div>
+
+        <div class="ceo-signature">
+          <div class="ceo-sig-left">
+            <div class="ceo-sig-company">㈜MIK — Motion In Korea</div>
+            <div class="ceo-sig-name-kr">김동빈 대표이사</div>
+            <div class="ceo-sig-role">CEO, MIK Racing en1</div>
+          </div>
+          <div class="ceo-sig-badge">
+            <div class="ceo-sig-badge-en">BEYOND MOTION</div>
+            <div class="ceo-sig-badge-kr">TOWARD EMOTION</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════
+     SECTION 3: VISION & MISSION + VALUES
+══════════════════════════════ -->
+<section id="vision">
+  <div class="vision-glow"></div>
+  <div class="wrap" style="position:relative;z-index:1;">
+    <div class="section-label reveal">Vision &amp; Mission</div>
+    <h2 class="section-h2 reveal">비전, 미션 &amp;<br><span class="c">핵심 가치</span></h2>
+    <p class="section-lead reveal">
+      MIK가 나아가는 방향과 그 과정에서 지키는 원칙들입니다.
+    </p>
+
+    <!-- Vision + Mission -->
+    <div class="vision-top reveal">
+      <div class="vm-card vision-card">
+        <div class="vm-type v">VISION</div>
+        <div class="vm-statement">
+          한국 모터스포츠를<br><span class="hl">세계가 주목하는</span><br>산업으로
+        </div>
+        <div class="vm-desc">
+          레이싱은 한국에서 아직 성장하는 산업입니다. MIK는 전문적인 운영 시스템,
+          데이터 기반 의사결정, 글로벌 수준의 이벤트 기획을 통해
+          한국 모터스포츠 생태계를 한 단계 도약시키는 것을 비전으로 합니다.
+        </div>
+      </div>
+      <div class="vm-card mission-card">
+        <div class="vm-type m">MISSION</div>
+        <div class="vm-statement">
+          모터스포츠의 모든 이해관계자를<br><span class="hl">연결하고 성장</span>시킨다
+        </div>
+        <div class="vm-desc">
+          팬, 드라이버, 스폰서, 지자체, 브랜드 — MIK는 모터스포츠 생태계 안의
+          모든 주체가 함께 성장할 수 있도록 연결고리를 만들고 가치를 창출합니다.
+          감동이 비즈니스가 되고, 비즈니스가 다시 감동을 만드는 선순환 구조를 설계합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="values-grid reveal" style="margin-top:2px;">
+      <div class="value-card">
+        <div class="value-num">CORE VALUE 01</div>
+        <div class="value-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M6 18 L18 6 L30 18 L18 30 Z" stroke="#0055FF" stroke-width="1.5" fill="none"/>
+            <path d="M12 18 L18 12 L24 18 L18 24 Z" fill="rgba(0,85,255,.2)"/>
+            <path d="M18 6 L30 18" stroke="#00D9C8" stroke-width="1.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <div class="value-keyword dyn">#Dynamic</div>
+        <div class="value-hash">다이나믹 · 역동성</div>
+        <div class="value-desc">
+          변화를 두려워하지 않습니다. 레이싱카처럼 빠르게, 그리고 과감하게 — MIK는 항상 움직입니다.
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">CORE VALUE 02</div>
+        <div class="value-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="6" y="6" width="24" height="24" rx="3" stroke="#00D9C8" stroke-width="1.5" fill="none"/>
+            <path d="M12 18 L16 22 L24 14" stroke="#00D9C8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="value-keyword pro">#Professionalism</div>
+        <div class="value-hash">프로페셔널리즘 · 전문성</div>
+        <div class="value-desc">
+          레이싱 현장 출신만이 알 수 있는 디테일. MIK의 모든 서비스는 현장 경험에서 나옵니다.
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">CORE VALUE 03</div>
+        <div class="value-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="12" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-opacity=".5"/>
+            <path d="M12 18 Q18 10 24 18 Q18 26 12 18Z" fill="rgba(0,85,255,.25)" stroke="#0055FF" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="value-keyword sol">#Solution</div>
+        <div class="value-hash">솔루션 · 문제 해결</div>
+        <div class="value-desc">
+          클라이언트의 목적에 맞는 최적의 답을 찾습니다. 우리는 단순한 실행자가 아닌 전략적 파트너입니다.
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">CORE VALUE 04</div>
+        <div class="value-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="10" cy="18" r="4" stroke="#0055FF" stroke-width="1.5" fill="rgba(0,85,255,.15)"/>
+            <circle cx="26" cy="18" r="4" stroke="#0055FF" stroke-width="1.5" fill="rgba(0,85,255,.15)"/>
+            <path d="M14 18 L22 18" stroke="#00D9C8" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <circle cx="10" cy="10" r="3" stroke="#00D9C8" stroke-width="1" fill="rgba(0,217,200,.1)"/>
+            <circle cx="26" cy="26" r="3" stroke="#00D9C8" stroke-width="1" fill="rgba(0,217,200,.1)"/>
+            <path d="M12 12 L14 16" stroke="#00D9C8" stroke-width="1" stroke-opacity=".5"/>
+            <path d="M22 20 L24 24" stroke="#00D9C8" stroke-width="1" stroke-opacity=".5"/>
+          </svg>
+        </div>
+        <div class="value-keyword con">#Connectivity</div>
+        <div class="value-hash">커넥티비티 · 연결</div>
+        <div class="value-desc">
+          팬, 드라이버, 브랜드, 지자체 — MIK는 모터스포츠 생태계의 모든 점을 연결하는 허브입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════
+     SECTION 4: HISTORY / TIMELINE
+══════════════════════════════ -->
+<section id="history">
+  <div class="wrap">
+    <div class="timeline-layout">
+      <div class="timeline-left reveal">
+        <div class="section-label">History</div>
+        <div class="timeline-tagline">
+          달려온 길이<br><span class="hl">다음 레이스의</span><br>출발선입니다
+        </div>
+        <div class="timeline-subdesc">
+          MIK의 모든 경험은 다음 스텝을 위한 데이터가 됩니다.
+          레이서의 감각으로 쌓아온 비즈니스의 역사입니다.
+        </div>
+      </div>
+
+      <div class="timeline-items">
+        <div class="tl-item reveal">
+          <div class="tl-year">Past</div>
+          <div class="tl-body">
+            <div class="tl-title">김동빈 대표, 슈퍼레이스 프로 드라이버 시절</div>
+            <div class="tl-desc">트랙 위에서 직접 경쟁하며 레이싱 비즈니스 생태계를 내부에서 체득. 현장 경험이 MIK 창업의 토대가 됨.</div>
+            <div class="tl-tags"><span class="tl-tag">슈퍼레이스</span><span class="tl-tag">드라이버 경력</span></div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">2025</div>
+          <div class="tl-body">
+            <div class="tl-title">㈜MIK 설립 — Motion In Korea 출범</div>
+            <div class="tl-desc">레이싱 현장 경험을 기반으로 모터스포츠 종합 비즈니스 기업 창업. 4대 사업 영역(Promoter, Solution, Athlete, Racing) 정립.</div>
+            <div class="tl-tags"><span class="tl-tag">법인 설립</span><span class="tl-tag">비즈니스 론칭</span></div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">2025</div>
+          <div class="tl-body">
+            <div class="tl-title">이정우 드라이버 매니지먼트 계약 체결</div>
+            <div class="tl-desc">첫 번째 소속 드라이버 영입. 드라이버 커리어 로드맵 설계 및 스폰서십 연결 시작. Athlete Management 사업 본격화.</div>
+            <div class="tl-tags"><span class="tl-tag">매니지먼트</span><span class="tl-tag">이정우</span></div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">2025</div>
+          <div class="tl-body">
+            <div class="tl-title">인제 마스터즈 운영 참여</div>
+            <div class="tl-desc">첫 번째 대회 운영 레퍼런스 확보. 기획·운영·스폰서십·정산까지 원스톱 솔루션을 실전에서 검증.</div>
+            <div class="tl-tags"><span class="tl-tag">인제 마스터즈</span><span class="tl-tag">운영 레퍼런스</span></div>
+          </div>
+        </div>
+        <div class="tl-item current reveal">
+          <div class="tl-year">2026</div>
+          <div class="tl-body">
+            <div class="tl-live-badge"><span class="tl-live-dot"></span>NOW IN PROGRESS</div>
+            <div class="tl-title">MIK Racing en1 창단 — 현대 N 페스티벌 eN1 참전</div>
+            <div class="tl-desc">오한솔·한재희 드라이버 라인업 확정. 현대 아이오닉 5 N으로 전기차 레이싱 최전선 합류. 레이싱팀을 Technical Lab으로 운영하며 비즈니스 생태계와 연계.</div>
+            <div class="tl-tags"><span class="tl-tag">MIK Racing en1</span><span class="tl-tag">eN1 클래스</span><span class="tl-tag">오한솔</span><span class="tl-tag">한재희</span></div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">Next</div>
+          <div class="tl-body">
+            <div class="tl-title">모터스포츠 IP 확장 &amp; 글로벌 파트너십</div>
+            <div class="tl-desc">인제 마스터즈 시리즈 확대, 해외 드라이버 매니지먼트 진출, 전기차 레이싱 기술 파트너십. MIK는 계속 달립니다.</div>
+            <div class="tl-tags"><span class="tl-tag">IP 확장</span><span class="tl-tag">글로벌</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════
+     SECTION 5: KEYWORDS
+══════════════════════════════ -->
+<section id="keywords" style="padding-top:120px;">
+  <div class="wrap reveal">
+    <div class="kw-wall">
+      <div class="kw-left">
+        <div class="kw-left-tag">BRAND KEYWORDS</div>
+        <div class="kw-left-title">MIK를 한 단어로<br>정의한다면</div>
+        <div class="kw-left-desc">
+          MIK가 모든 사업과 커뮤니케이션에서 일관되게 지키는 4개의 핵심 키워드입니다.
+          이 단어들이 MIK의 언어이자 행동 원칙입니다.
+        </div>
+      </div>
+      <div class="kw-right">
+        <div class="kw-item">
+          <div class="kw-hash b">#Dynamic</div>
+          <div class="kw-meaning">멈추지 않는 에너지. 빠른 실행과 과감한 도전으로 산업을 앞서갑니다.</div>
+        </div>
+        <div class="kw-item">
+          <div class="kw-hash c">#Professionalism</div>
+          <div class="kw-meaning">레이싱 현장 출신의 전문성. 디테일이 다릅니다.</div>
+        </div>
+        <div class="kw-item">
+          <div class="kw-hash w">#Solution</div>
+          <div class="kw-meaning">문제를 보면 해답을 설계합니다. 단순 실행이 아닌 전략적 파트너.</div>
+        </div>
+        <div class="kw-item">
+          <div class="kw-hash b">#Connectivity</div>
+          <div class="kw-meaning">팬·드라이버·브랜드·지자체. 모든 점을 잇는 모터스포츠 허브.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CTA
+══════════════════════════════ -->
+<div id="identity-cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <p class="cta-tag">NEXT — Business Solutions</p>
+      <h2 class="cta-title">MIK의 비즈니스를<br>더 자세히 알아보세요</h2>
+      <p class="cta-desc">4대 핵심 사업 솔루션 — Promoter, Motorsports Solution, Athlete Management, Racing Operation.</p>
+      <div class="cta-btns">
+        <a href="mik-business.html" class="btn-primary">Business 보기</a>
+        <a href="mailto:dkyang@miksports.com" class="btn-ghost">비즈니스 문의</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span>MIK</span> | MOTION IN KOREA</div>
+      <p>모터스포츠의 움직임을 넘어<br>감동으로 나아가는 기업, ㈜MIK</p>
+      <p style="margin-top:12px;font-size:.75rem;">
+        <span style="color:#0055FF;">●</span>
+        <a href="https://www.mikrace.com" target="_blank" style="color:var(--titanium);text-decoration:none;"> www.mikrace.com</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>MENU</h4>
+      <ul>
+        <li><a href="mik-homepage.html">Home</a></li>
+        <li><a href="#">Identity</a></li>
+        <li><a href="mik-business.html">Business</a></li>
+        <li><a href="mik-homepage.html#assets">Racing</a></li>
+        <li><a href="mik-homepage.html#news">News</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>IDENTITY</h4>
+      <ul>
+        <li><a href="#meaning">브랜드 네임</a></li>
+        <li><a href="#ceo">CEO 인사말</a></li>
+        <li><a href="#vision">비전 &amp; 미션</a></li>
+        <li><a href="#history">연혁</a></li>
+        <li><a href="#keywords">브랜드 키워드</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></li>
+        <li><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></li>
+        <li><a href="https://www.mikrace.com" target="_blank">MIK Racing en1</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ㈜MIK (Motion In Korea). All rights reserved.</p>
+    <div class="footer-email"><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

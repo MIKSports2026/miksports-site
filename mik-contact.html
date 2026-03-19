@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="㈜MIK Contact — 비즈니스 제휴, 스폰서십, 대회 운영, 취재·미디어 문의.">
+<title>Contact — MIK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#0055FF;--cyan:#00D9C8;--deep:#0a0a14;--mid:#444455;--sub:#888899;--line:#e4e4ec;--surface:#f5f5f8;--white:#ffffff;--nav-h:72px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white);color:var(--deep);font-family:'Pretendard','Noto Sans KR',sans-serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(16px);transition:box-shadow .3s;}
+  nav.elevated{box-shadow:0 2px 24px rgba(0,0,0,.07);}
+  .nav-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:.06em;text-decoration:none;color:var(--deep);display:flex;align-items:center;gap:8px;}
+  .nav-logo .blue{color:var(--blue);}
+  .nav-logo .ndiv{width:1px;height:16px;background:var(--line);}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{color:var(--sub);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;padding-bottom:4px;}
+  .nav-links a:hover,.nav-links a.active{color:var(--deep);}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--blue);border-radius:2px;transform:scaleX(0);transition:transform .2s;}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:var(--blue);color:var(--white);padding:.52rem 1.35rem;border-radius:3px;font-size:.76rem;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:.1em;text-decoration:none;transition:background .2s,transform .15s;}
+  .nav-cta:hover{background:#0044dd;transform:translateY(-1px);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:var(--deep);border-radius:2px;}
+  .mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--white);border-top:1px solid var(--line);box-shadow:0 8px 32px rgba(0,0,0,.1);padding:28px;z-index:999;flex-direction:column;gap:20px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:var(--mid);text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.82rem;letter-spacing:.12em;padding-bottom:14px;border-bottom:1px solid var(--line);transition:color .2s;}
+  .mobile-menu a:hover{color:var(--blue);}
+  .mobile-menu .btn-blue{text-align:center;padding:.85rem;background:var(--blue);color:#fff;border-radius:3px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-decoration:none;}
+  .btn-primary{background:var(--blue);color:var(--white);padding:.82rem 2rem;border-radius:3px;font-family:'Orbitron',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-decoration:none;display:inline-block;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer;}
+  .btn-primary:hover{background:#0044dd;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,85,255,.3);}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+  .reveal.visible{opacity:1;transform:none;}
+  .rd1{transition-delay:.1s;} .rd2{transition-delay:.2s;}
+  .wrap{max-width:1300px;margin:0 auto;}
+  .sec-label{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.3em;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .sec-label::before{content:'';width:28px;height:2px;background:var(--blue);display:block;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  /* PAGE HERO */
+  #page-hero{padding:calc(var(--nav-h)+72px) 48px 80px;background:var(--white);position:relative;overflow:hidden;}
+  #page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.5;mask-image:radial-gradient(ellipse 80% 80% at 50% 100%,black 20%,transparent 80%);pointer-events:none;}
+  .ph-inner{max-width:1300px;margin:0 auto;text-align:center;}
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--sub);margin-bottom:24px;font-family:'Orbitron',sans-serif;letter-spacing:.1em;justify-content:center;}
+  .breadcrumb a{color:var(--sub);text-decoration:none;transition:color .2s;}
+  .breadcrumb a:hover{color:var(--blue);}
+  .breadcrumb .sep{color:var(--line);}
+  .breadcrumb .cur{color:var(--blue);}
+  .ph-label{display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:center;}
+  .ph-label span:first-child{width:28px;height:2px;background:var(--blue);display:block;}
+  .ph-label-text{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.3em;color:var(--blue);}
+  .ph-h1{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.05;color:var(--deep);margin-bottom:20px;animation:fadeUp .7s .2s both;}
+  .ph-h1 .blue{color:var(--blue);}
+  .ph-sub{color:var(--sub);font-size:1rem;line-height:1.8;max-width:520px;margin:0 auto 48px;animation:fadeUp .7s .35s both;}
+
+  /* CONTACT TYPE SELECTOR */
+  #type-selector{padding:0 48px 80px;}
+  .type-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .type-card{border:1.5px solid var(--line);border-radius:10px;padding:28px 22px;cursor:pointer;transition:border-color .25s,background .25s,transform .2s;text-align:center;}
+  .type-card:hover,.type-card.selected{border-color:var(--blue);background:#f0f5ff;transform:translateY(-3px);}
+  .type-card.selected{border-width:2px;}
+  .tc-icon{width:52px;height:52px;border-radius:10px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;color:#fff;letter-spacing:.04em;}
+  .tc-i1{background:linear-gradient(135deg,#001155,#0055ff);}
+  .tc-i2{background:linear-gradient(135deg,#002b26,#009988);}
+  .tc-i3{background:linear-gradient(135deg,#1a0044,#6600cc);}
+  .tc-i4{background:linear-gradient(135deg,#220800,#cc4400);}
+  .tc-name{font-weight:700;font-size:.92rem;color:var(--deep);margin-bottom:5px;}
+  .tc-desc{font-size:.78rem;color:var(--sub);line-height:1.5;}
+
+  /* FORM SECTION */
+  #contact-form-section{padding:0 48px 100px;background:var(--white);}
+  .form-layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start;}
+
+  /* 폼 영역 */
+  .form-wrap{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:48px;}
+  .form-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.1rem;color:var(--deep);margin-bottom:6px;}
+  .form-subtitle{font-size:.85rem;color:var(--sub);margin-bottom:32px;line-height:1.6;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .form-group{margin-bottom:16px;}
+  .form-group.full{grid-column:1/-1;}
+  label{display:block;font-size:.78rem;font-weight:600;color:var(--mid);margin-bottom:6px;letter-spacing:.04em;}
+  .req{color:var(--blue);}
+  input[type=text],input[type=email],input[type=tel],select,textarea{
+    width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:6px;
+    font-family:'Pretendard',sans-serif;font-size:.88rem;color:var(--deep);
+    background:var(--white);transition:border-color .2s,box-shadow .2s;outline:none;
+    appearance:none;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,85,255,.1);}
+  input::placeholder,textarea::placeholder{color:var(--sub);}
+  select{cursor:pointer;}
+  textarea{resize:vertical;min-height:120px;line-height:1.6;}
+  .form-divider{border:none;border-top:1px solid var(--line);margin:24px 0;}
+  .form-agreement{display:flex;gap:10px;align-items:flex-start;margin-bottom:24px;}
+  .form-agreement input[type=checkbox]{width:16px;height:16px;margin-top:2px;cursor:pointer;accent-color:var(--blue);flex-shrink:0;}
+  .form-agreement label{font-size:.8rem;color:var(--sub);line-height:1.55;cursor:pointer;margin-bottom:0;}
+  .form-agreement label a{color:var(--blue);text-decoration:none;}
+  .form-submit{width:100%;padding:.9rem;font-size:.82rem;letter-spacing:.1em;}
+
+  /* 오른쪽 사이드 */
+  .contact-side{display:flex;flex-direction:column;gap:16px;}
+  .side-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px;}
+  .side-card-title{font-family:'Orbitron',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.15em;color:var(--deep);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .side-card-title::before{content:'';width:16px;height:2px;background:var(--blue);display:block;}
+  .contact-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-icon{width:36px;height:36px;border-radius:6px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;color:#fff;font-family:'Orbitron',sans-serif;}
+  .contact-row-body{}
+  .contact-row-label{font-size:.7rem;color:var(--sub);margin-bottom:2px;}
+  .contact-row-val{font-size:.84rem;font-weight:600;color:var(--deep);}
+  .contact-row-val a{color:var(--blue);text-decoration:none;transition:color .2s;}
+  .contact-row-val a:hover{color:#0044dd;}
+  /* 다크 사이드 카드 */
+  .side-card.dark{background:var(--deep);border-color:rgba(0,85,255,.2);position:relative;overflow:hidden;}
+  .side-card.dark::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,85,255,.15),rgba(0,217,200,.06));pointer-events:none;}
+  .side-card.dark .side-card-title{color:#fff;position:relative;}
+  .side-card.dark .side-card-title::before{background:var(--cyan);}
+  .racing-link{display:flex;align-items:center;gap:14px;padding:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;text-decoration:none;transition:background .2s;position:relative;}
+  .racing-link:hover{background:rgba(255,255,255,.1);}
+  .rl-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 2s ease-in-out infinite;flex-shrink:0;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  .rl-body{}
+  .rl-name{font-family:'Orbitron',sans-serif;font-weight:700;font-size:.8rem;color:#fff;margin-bottom:3px;}
+  .rl-url{font-size:.72rem;color:rgba(255,255,255,.4);}
+  /* map placeholder */
+  .map-placeholder{background:var(--surface);border:1px solid var(--line);border-radius:10px;height:200px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+  .mp-icon{font-size:1.5rem;opacity:.3;}
+  .mp-text{font-size:.78rem;color:var(--sub);}
+
+  /* FAQ */
+  #faq{padding:80px 48px;background:var(--surface);border-top:1px solid var(--line);}
+  .faq-layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:64px;margin-top:48px;}
+  .faq-left{position:sticky;top:calc(var(--nav-h)+24px);}
+  .faq-left-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.4rem;color:var(--deep);margin-bottom:12px;line-height:1.3;}
+  .faq-left-title .c{color:var(--blue);}
+  .faq-left-desc{font-size:.85rem;color:var(--sub);line-height:1.75;margin-bottom:24px;}
+  .faq-contact-quick{background:var(--blue);border-radius:8px;padding:20px;text-align:center;}
+  .fcq-title{font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.2em;color:rgba(255,255,255,.6);margin-bottom:8px;}
+  .fcq-email{font-weight:700;font-size:.88rem;color:#fff;margin-bottom:12px;}
+  .fcq-email a{color:#fff;text-decoration:none;}
+  .fcq-btn{display:block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:.6rem 1rem;border-radius:4px;font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.1em;text-decoration:none;transition:background .2s;font-weight:700;}
+  .fcq-btn:hover{background:rgba(255,255,255,.25);}
+  .faq-list{display:flex;flex-direction:column;gap:0;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item:first-child{border-top:1px solid var(--line);}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;gap:16px;}
+  .faq-q-text{font-weight:600;font-size:.92rem;color:var(--deep);line-height:1.4;}
+  .faq-toggle{width:24px;height:24px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem;color:var(--blue);transition:background .2s,transform .2s;}
+  .faq-item.open .faq-toggle{background:var(--blue);color:#fff;transform:rotate(45deg);}
+  .faq-a{display:none;padding:0 0 20px;}
+  .faq-item.open .faq-a{display:block;}
+  .faq-a p{font-size:.85rem;color:var(--sub);line-height:1.8;}
+
+  /* FOOTER */
+  footer{background:var(--deep);padding:60px 48px 36px;}
+  .footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+  .footer-brand .logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1rem;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .footer-brand .logo span{color:var(--blue);}
+  .footer-brand .logo .fdiv{width:1px;height:14px;background:rgba(255,255,255,.15);}
+  .footer-brand p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.75;}
+  .footer-brand .fl a{color:var(--cyan);text-decoration:none;font-size:.74rem;margin-top:14px;display:inline-block;}
+  .footer-col h4{font-family:'Orbitron',sans-serif;font-size:.63rem;letter-spacing:.22em;color:var(--cyan);margin-bottom:16px;}
+  .footer-col ul{list-style:none;}
+  .footer-col ul li{margin-bottom:9px;}
+  .footer-col ul a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:color .2s;}
+  .footer-col ul a:hover{color:#fff;}
+  .footer-bottom{max-width:1300px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-copy{font-size:.72rem;color:rgba(255,255,255,.28);}
+  .footer-emails{display:flex;gap:14px;}
+  .footer-emails a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s;}
+  .footer-emails a:hover{color:var(--cyan);}
+
+  /* RESPONSIVE */
+  @media(max-width:1024px){
+    nav{padding:0 28px;}
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    #page-hero,#type-selector,#contact-form-section,#faq{padding-left:28px;padding-right:28px;}
+    .form-layout,.faq-layout{grid-template-columns:1fr;gap:32px;}
+    .faq-left{position:static;}
+    .type-grid{grid-template-columns:1fr 1fr;}
+    footer{padding:48px 28px 28px;}
+    .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  }
+  @media(max-width:600px){
+    .type-grid,.form-row{grid-template-columns:1fr;}
+    .footer-inner{grid-template-columns:1fr;}
+  }
+</style>
+
+<!-- ★ 구조화 데이터 (Google 검색 최적화) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact — MIK",
+  "url": "https://www.miksports.com/contact",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.miksports.com/"},
+      {"@type":"ListItem","position":2,"name":"Contact","item":"https://www.miksports.com/contact"}
+    ]
+  }
+}
+</script>
+<link rel="canonical" href="https://www.miksports.com/contact">
+<meta property="og:url" content="https://www.miksports.com/contact">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MIK | Motion In Korea">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="mik-homepage-white.html" class="nav-logo"><span class="blue">MIK</span><span class="ndiv"></span>MOTION IN KOREA</a>
+  <ul class="nav-links">
+    <li><a href="mik-identity.html">IDENTITY</a></li>
+    <li><a href="mik-business.html">BUSINESS</a></li>
+    <li><a href="mik-racing.html">RACING</a></li>
+    <li><a href="mik-news.html">NEWS</a></li>
+    <li><a href="#" class="active">CONTACT</a></li>
+  </ul>
+  <a href="mailto:dkyang@miksports.com" class="nav-cta">CONTACT US</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="mik-identity.html" onclick="toggleMenu()">IDENTITY</a>
+  <a href="mik-business.html" onclick="toggleMenu()">BUSINESS</a>
+  <a href="mik-racing.html" onclick="toggleMenu()">RACING</a>
+  <a href="mik-news.html" onclick="toggleMenu()">NEWS</a>
+  <a href="#" onclick="toggleMenu()">CONTACT</a>
+  <a href="mailto:dkyang@miksports.com" class="btn-blue">이메일 문의</a>
+</div>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="ph-inner">
+    <div class="breadcrumb" style="animation:fadeUp .5s .1s both;"><a href="mik-homepage-white.html">HOME</a><span class="sep">/</span><span class="cur">CONTACT</span></div>
+    <div class="ph-label" style="animation:fadeUp .5s .2s both;"><span></span><span class="ph-label-text">05 CONTACT</span></div>
+    <h1 class="ph-h1">함께<br><span class="blue">시작하겠습니다</span></h1>
+    <p class="ph-sub">비즈니스 제휴, 스폰서십, 대회 운영 대행, 드라이버 매니지먼트 — 어떤 문의든 MIK가 최적의 답을 드립니다.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .5s both;">
+      <a href="mailto:dkyang@miksports.com" class="btn-primary">이메일 바로 보내기</a>
+      <a href="#contact-form-section" style="border:2px solid var(--deep);color:var(--deep);padding:.8rem 2rem;border-radius:3px;font-family:'Orbitron',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.1em;text-decoration:none;transition:border-color .2s,color .2s;">문의 폼 작성</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT TYPE SELECTOR -->
+<section id="type-selector">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:32px;" class="reveal">
+      <div class="sec-label" style="justify-content:center;">문의 유형을 선택하세요</div>
+    </div>
+    <div class="type-grid reveal">
+      <div class="type-card selected" onclick="selectType(this,'비즈니스 제휴')" id="tc1">
+        <div class="tc-icon tc-i1">BIZ</div>
+        <div class="tc-name">비즈니스 제휴</div>
+        <div class="tc-desc">대회 운영 대행, 솔루션 협력, 파트너십 제안</div>
+      </div>
+      <div class="type-card" onclick="selectType(this,'스폰서십')" id="tc2">
+        <div class="tc-icon tc-i2">SPR</div>
+        <div class="tc-name">스폰서십</div>
+        <div class="tc-desc">레이싱팀, 드라이버, 이벤트 스폰서십 패키지</div>
+      </div>
+      <div class="type-card" onclick="selectType(this,'드라이버 매니지먼트')" id="tc3">
+        <div class="tc-icon tc-i3">ATH</div>
+        <div class="tc-name">드라이버 매니지먼트</div>
+        <div class="tc-desc">선수 발굴·육성, 커리어 설계, 상업적 연결</div>
+      </div>
+      <div class="type-card" onclick="selectType(this,'취재·미디어')" id="tc4">
+        <div class="tc-icon tc-i4">MED</div>
+        <div class="tc-name">취재·미디어</div>
+        <div class="tc-desc">인터뷰, 취재 요청, 미디어 키트 요청</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="contact-form-section">
+  <div class="form-layout wrap">
+    <div class="form-wrap reveal">
+      <div class="form-title" id="formTitle">비즈니스 제휴 문의</div>
+      <div class="form-subtitle">모터스포츠 생태계 전반에 걸친 파트너십을 제안해 주세요. 빠르게 검토 후 연락드리겠습니다.</div>
+
+      <form onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>회사명 / 기관명 <span class="req">*</span></label>
+            <input type="text" placeholder="㈜예시 기업" required>
+          </div>
+          <div class="form-group">
+            <label>담당자 성함 <span class="req">*</span></label>
+            <input type="text" placeholder="홍길동" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>이메일 <span class="req">*</span></label>
+            <input type="email" placeholder="example@company.com" required>
+          </div>
+          <div class="form-group">
+            <label>연락처</label>
+            <input type="tel" placeholder="010-0000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>문의 유형 <span class="req">*</span></label>
+          <select id="typeSelect" required>
+            <option value="비즈니스 제휴" selected>비즈니스 제휴</option>
+            <option value="스폰서십">스폰서십</option>
+            <option value="드라이버 매니지먼트">드라이버 매니지먼트</option>
+            <option value="취재·미디어">취재·미디어</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>문의 내용 <span class="req">*</span></label>
+          <textarea placeholder="문의 내용을 자세히 작성해 주세요. 구체적일수록 빠른 답변이 가능합니다." required></textarea>
+        </div>
+        <hr class="form-divider">
+        <div class="form-agreement">
+          <input type="checkbox" id="agree" required>
+          <label for="agree">개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 처리 목적으로만 사용되며, 처리 완료 후 즉시 파기됩니다. <a href="#">개인정보 처리방침</a></label>
+        </div>
+        <button type="submit" class="btn-primary form-submit">문의 보내기</button>
+      </form>
+
+      <!-- 성공 메시지 (초기 숨김) -->
+      <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px;">
+        <div style="width:56px;height:56px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:#fff;">✓</div>
+        <div style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.1rem;color:var(--deep);margin-bottom:8px;">문의가 접수되었습니다</div>
+        <div style="font-size:.85rem;color:var(--sub);line-height:1.7;">빠른 시일 내에 담당자가 연락드리겠습니다.<br>보내주신 이메일로 접수 확인 메일이 발송됩니다.</div>
+      </div>
+    </div>
+
+    <!-- 사이드 정보 -->
+    <div class="contact-side reveal rd1">
+      <div class="side-card">
+        <div class="side-card-title">직접 연락</div>
+        <div class="contact-row">
+          <div class="contact-icon">BIZ</div>
+          <div class="contact-row-body">
+            <div class="contact-row-label">비즈니스 · 스폰서십</div>
+            <div class="contact-row-val"><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" style="background:var(--cyan);color:var(--deep);">GEN</div>
+          <div class="contact-row-body">
+            <div class="contact-row-label">일반 문의</div>
+            <div class="contact-row-val"><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" style="background:var(--deep);">SNS</div>
+          <div class="contact-row-body">
+            <div class="contact-row-label">공식 레이싱팀 사이트</div>
+            <div class="contact-row-val"><a href="https://www.mikrace.com" target="_blank">www.mikrace.com</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-card dark">
+        <div class="side-card-title">MIK Racing en1</div>
+        <a href="https://www.mikrace.com" target="_blank" class="racing-link">
+          <div class="rl-dot"></div>
+          <div class="rl-body">
+            <div class="rl-name">MIK Racing en1 공식 사이트</div>
+            <div class="rl-url">www.mikrace.com</div>
+          </div>
+          <div style="color:rgba(255,255,255,.3);font-size:.85rem;margin-left:auto;">→</div>
+        </a>
+      </div>
+
+      <div class="side-card">
+        <div class="side-card-title">담당자 안내</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--white);padding:16px 14px;">
+            <div style="font-size:.7rem;color:var(--sub);margin-bottom:4px;">단장</div>
+            <div style="font-weight:700;font-size:.88rem;color:var(--deep);">양돈규</div>
+            <div style="font-size:.72rem;color:var(--blue);margin-top:4px;">dkyang@miksports.com</div>
+          </div>
+          <div style="background:var(--white);padding:16px 14px;">
+            <div style="font-size:.7rem;color:var(--sub);margin-bottom:4px;">대표</div>
+            <div style="font-weight:700;font-size:.88rem;color:var(--deep);">김동빈</div>
+            <div style="font-size:.72rem;color:var(--blue);margin-top:4px;">racrodk@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="mp-icon">📍</div>
+        <div class="mp-text" style="font-weight:600;color:var(--mid);">오시는 길</div>
+        <div class="mp-text">위치 정보는 문의 후 안내드립니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="faq-left reveal">
+        <div class="sec-label">FAQ</div>
+        <div class="faq-left-title">자주 묻는<br><span class="c">질문</span></div>
+        <div class="faq-left-desc">궁금한 점이 있으신가요? 아래 FAQ에서 빠르게 확인해 보세요. 원하는 답변이 없다면 직접 문의해 주세요.</div>
+        <div class="faq-contact-quick">
+          <div class="fcq-title">빠른 이메일 문의</div>
+          <div class="fcq-email"><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></div>
+          <a href="mailto:dkyang@miksports.com" class="fcq-btn">이메일 보내기</a>
+        </div>
+      </div>
+      <div class="faq-list reveal rd1">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <div class="faq-q-text">스폰서십 비용과 혜택은 어떻게 되나요?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a"><p>스폰서십은 타이틀 / 메인 / 오피셜 / 서포팅 4개 등급으로 구성되며, 각 등급에 따라 차량 래핑 위치, 유니폼 배치, SNS 노출 빈도, 보도자료 언급, VIP 초청 여부 등이 달라집니다. 맞춤형 패키지도 설계 가능하니 문의 주시면 자세한 제안서를 발송해 드립니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <div class="faq-q-text">대회 운영 대행 서비스의 최소 규모는 어떻게 되나요?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a"><p>소규모 아마추어 대회부터 대형 프로 시리즈까지 규모에 관계없이 문의 가능합니다. 기획 단계부터 함께하는 풀 서비스와 현장 운영만 담당하는 서비스 모두 제공합니다. 먼저 대회 규모와 목적을 알려주시면 최적의 서비스 범위를 제안드리겠습니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <div class="faq-q-text">드라이버 매니지먼트는 어떤 기준으로 계약하나요?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a"><p>드라이빙 실력뿐 아니라 브랜드 가능성, 미디어 활용도, 성장 속도를 종합적으로 평가합니다. 아마추어 레이서부터 세미프로까지 발굴 대상은 제한이 없습니다. 관심이 있으시면 경력 사항과 함께 문의해 주세요.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <div class="faq-q-text">취재 및 인터뷰 요청은 어떻게 진행되나요?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a"><p>미디어 문의는 dkyang@miksports.com으로 취재 목적, 매체명, 희망 일정을 포함하여 보내주시면 됩니다. 공식 미디어 키트(팀 프로필, 드라이버 사진, 차량 사진 등)도 요청 시 제공합니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <div class="faq-q-text">문의 후 답변까지 얼마나 걸리나요?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a"><p>일반적으로 영업일 기준 1~2일 이내 답변을 드립니다. 제안서 요청 등 검토가 필요한 사항은 3~5일이 소요될 수 있습니다. 급한 문의의 경우 이메일 제목에 [긴급]을 표시해 주시면 우선 처리해 드립니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span>MIK</span><span class="fdiv"></span>MOTION IN KOREA</div>
+      <p>모터스포츠의 움직임을 넘어<br>감동으로 나아가는 기업, ㈜MIK.</p>
+      <div class="fl"><a href="https://www.mikrace.com" target="_blank">www.mikrace.com →</a></div>
+    </div>
+    <div class="footer-col"><h4>MENU</h4><ul><li><a href="mik-homepage-white.html">Home</a></li><li><a href="mik-identity.html">Identity</a></li><li><a href="mik-business.html">Business</a></li><li><a href="mik-racing.html">Racing</a></li><li><a href="mik-news.html">News</a></li></ul></div>
+    <div class="footer-col"><h4>CONTACT</h4><ul><li><a href="#type-selector">비즈니스 제휴</a></li><li><a href="#type-selector">스폰서십</a></li><li><a href="#type-selector">드라이버 매니지먼트</a></li><li><a href="#type-selector">취재·미디어</a></li></ul></div>
+    <div class="footer-col"><h4>EMAIL</h4><ul><li><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></li><li><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></li><li><a href="https://www.mikrace.com" target="_blank">MIK Racing en1</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 ㈜MIK (Motion In Korea). All rights reserved.</p>
+    <div class="footer-emails"><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('elevated',scrollY>20));
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),i*70);obs.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  function selectType(el, type) {
+    document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('typeSelect').value = type;
+    const titles = {'비즈니스 제휴':'비즈니스 제휴 문의','스폰서십':'스폰서십 문의','드라이버 매니지먼트':'드라이버 매니지먼트 문의','취재·미디어':'취재·미디어 문의'};
+    document.getElementById('formTitle').textContent = titles[type] || type + ' 문의';
+    document.getElementById('contact-form-section').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    e.target.style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  }
+</script>
+</body>
+</html>

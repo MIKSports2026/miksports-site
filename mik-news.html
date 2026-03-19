@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MIK와 MIK Racing en1의 보도자료, 레이스 리포트, 2026 시즌 대회 일정, 갤러리.">
+<meta property="og:title" content="News — MIK | 최신 소식">
+<meta property="og:url" content="https://www.miksports.com/news">
+<meta property="og:site_name" content="MIK | Motion In Korea">
+<link rel="canonical" href="https://www.miksports.com/news">
+<title>News — MIK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Netlify Identity (CMS 로그인 콜백) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{--blue:#0055FF;--cyan:#00D9C8;--deep:#0a0a14;--mid:#444455;--sub:#888899;--line:#e4e4ec;--surface:#f5f5f8;--white:#ffffff;--nav-h:72px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white);color:var(--deep);font-family:'Pretendard',sans-serif;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(16px);transition:box-shadow .3s;}
+  nav.elevated{box-shadow:0 2px 24px rgba(0,0,0,.07);}
+  .nav-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.1rem;text-decoration:none;color:var(--deep);display:flex;align-items:center;gap:8px;}
+  .nav-logo .blue{color:var(--blue);}
+  .nav-logo .ndiv{width:1px;height:16px;background:var(--line);}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{color:var(--sub);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;padding-bottom:4px;}
+  .nav-links a:hover,.nav-links a.active{color:var(--deep);}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--blue);border-radius:2px;transform:scaleX(0);transition:transform .2s;}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:var(--blue);color:var(--white);padding:.52rem 1.35rem;border-radius:3px;font-size:.76rem;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:.1em;text-decoration:none;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:var(--deep);border-radius:2px;}
+  .mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--white);border-top:1px solid var(--line);box-shadow:0 8px 32px rgba(0,0,0,.1);padding:28px;z-index:999;flex-direction:column;gap:20px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:var(--mid);text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.82rem;letter-spacing:.12em;padding-bottom:14px;border-bottom:1px solid var(--line);}
+
+  /* COMMON */
+  .wrap{max-width:1300px;margin:0 auto;}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+  .reveal.visible{opacity:1;transform:none;}
+  .sec-label{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.3em;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .sec-label::before{content:'';width:28px;height:2px;background:var(--blue);display:block;}
+
+  /* PAGE HERO */
+  #page-hero{padding:calc(var(--nav-h)+64px) 48px 72px;background:var(--deep);position:relative;overflow:hidden;}
+  #page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,85,255,.2),rgba(0,217,200,.07));pointer-events:none;}
+  .ph-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
+  .ph-h1{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;color:#fff;margin-bottom:14px;}
+  .ph-h1 .cyan{color:var(--cyan);}
+  .ph-sub{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.8;}
+
+  /* 필터 탭 */
+  .filter-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+  .fpill{padding:.4rem 1rem;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);transition:all .2s;}
+  .fpill.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .fpill:hover:not(.active){background:rgba(255,255,255,.14);color:#fff;}
+
+  /* 로딩 스켈레톤 */
+  .skeleton-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+  .skeleton-card{background:var(--surface);border-radius:8px;overflow:hidden;animation:shimmer 1.5s ease-in-out infinite;}
+  .skeleton-thumb{height:160px;background:linear-gradient(90deg,#e4e4ec 25%,#efefef 50%,#e4e4ec 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;}
+  .skeleton-body{padding:20px;}
+  .skeleton-line{height:10px;background:linear-gradient(90deg,#e4e4ec 25%,#efefef 50%,#e4e4ec 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;border-radius:5px;margin-bottom:10px;}
+  .skeleton-line.short{width:60%;}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+  /* FEATURED */
+  #featured{padding:56px 48px 0;}
+  .featured-wrap{max-width:1300px;margin:0 auto;}
+  .featured-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:box-shadow .25s,transform .25s;text-decoration:none;}
+  .featured-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1);}
+  .fc-thumb{background:var(--deep);position:relative;overflow:hidden;min-height:280px;display:flex;align-items:flex-end;}
+  .fc-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .fc-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,85,255,.2),rgba(0,217,200,.08));}
+  .fc-thumb-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-weight:900;font-size:3.5rem;color:rgba(0,217,200,.2);}
+  .fc-thumb-badge{position:absolute;top:22px;left:22px;background:var(--blue);color:#fff;font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:.2em;padding:.28rem .7rem;border-radius:20px;}
+  .fc-thumb-date{position:absolute;bottom:18px;left:22px;font-size:.74rem;color:rgba(255,255,255,.5);}
+  .fc-body{padding:40px;background:var(--white);}
+  .fc-cat{display:inline-block;font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:.2em;padding:.22rem .6rem;border-radius:20px;margin-bottom:14px;}
+  .fc-title{font-weight:900;font-size:1.1rem;color:var(--deep);line-height:1.55;margin-bottom:14px;}
+  .fc-excerpt{font-size:.86rem;color:var(--sub);line-height:1.8;margin-bottom:22px;}
+  .fc-link{display:inline-flex;align-items:center;gap:8px;font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.1em;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(0,85,255,.25);padding-bottom:2px;transition:gap .2s;}
+  .fc-link:hover{gap:14px;border-color:var(--blue);}
+
+  /* NEWS GRID */
+  #news-grid{padding:48px 48px 100px;}
+  .ng-wrap{max-width:1300px;margin:0 auto;}
+  .ng-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+  .ng-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:.95rem;color:var(--deep);}
+  .ng-count{font-size:.8rem;color:var(--sub);}
+  .filter-row{display:flex;gap:8px;}
+  .nfpill{padding:.32rem .85rem;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--white);color:var(--sub);transition:all .2s;}
+  .nfpill.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .nfpill:hover:not(.on){background:var(--surface);color:var(--deep);}
+  /* 카드 그리드 */
+  .news-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .nc{background:var(--white);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;text-decoration:none;display:block;}
+  .nc:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.09);border-color:var(--blue);}
+  .nc-thumb{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background-size:cover;background-position:center;}
+  .nc-thumb.td{background-color:var(--deep);}
+  .nc-thumb.tb{background-color:#e8f0ff;}
+  .nc-thumb.tg{background-color:var(--surface);}
+  .nc-thumb.tp{background-color:#f3e8ff;}
+  .nc-thumb-txt{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.6rem;opacity:.18;}
+  .nc-thumb.td .nc-thumb-txt{color:var(--cyan);}
+  .nc-thumb.tb .nc-thumb-txt{color:var(--blue);}
+  .nc-thumb.tg .nc-thumb-txt{color:var(--mid);}
+  .nc-thumb.tp .nc-thumb-txt{color:#6600cc;}
+  .nc-body{padding:20px;}
+  .nc-cat{display:inline-block;font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:.18em;padding:.2rem .55rem;border-radius:20px;margin-bottom:10px;font-weight:700;}
+  .cat-press{background:#e8f0ff;color:var(--blue);}
+  .cat-race{background:var(--deep);color:var(--cyan);}
+  .cat-notice{background:#e0faf5;color:#007a6e;}
+  .cat-biz{background:#f0f0f0;color:var(--mid);}
+  .nc-title{font-size:.88rem;font-weight:700;color:var(--deep);line-height:1.55;margin-bottom:10px;}
+  .nc-date{font-size:.72rem;color:var(--sub);}
+
+  /* 빈 상태 */
+  .empty-state{text-align:center;padding:80px 20px;color:var(--sub);}
+  .empty-state .e-icon{font-size:2.5rem;margin-bottom:16px;opacity:.3;}
+  .empty-state p{font-size:.9rem;line-height:1.7;}
+
+  /* CALENDAR */
+  #calendar{padding:80px 48px;background:var(--surface);border-top:1px solid var(--line);}
+  .cal-layout{display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;margin-top:40px;}
+  .cal-info-card{background:var(--deep);border-radius:10px;padding:28px;position:relative;overflow:hidden;}
+  .cal-info-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,85,255,.18),rgba(0,217,200,.06));pointer-events:none;}
+  .cic-tag{font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:.22em;color:rgba(255,255,255,.4);margin-bottom:8px;position:relative;}
+  .cic-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:.95rem;color:#fff;margin-bottom:6px;position:relative;}
+  .cic-sub{font-size:.78rem;color:rgba(255,255,255,.45);position:relative;}
+  .race-list{display:flex;flex-direction:column;gap:0;}
+  .race-item{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:start;}
+  .race-item:first-child{padding-top:0;}
+  .race-item:last-child{border-bottom:none;}
+  .ri-round{font-family:'Orbitron',sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.1em;color:var(--blue);background:#e8f0ff;padding:.4rem .4rem;border-radius:4px;text-align:center;line-height:1.3;}
+  .ri-name{font-weight:700;font-size:.9rem;color:var(--deep);margin-bottom:3px;}
+  .ri-location{font-size:.76rem;color:var(--sub);}
+  .ri-date{font-size:.74rem;color:var(--sub);text-align:right;white-space:nowrap;}
+  .ri-status{font-family:'Orbitron',sans-serif;font-size:.57rem;letter-spacing:.1em;padding:.18rem .5rem;border-radius:20px;text-align:center;margin-top:4px;white-space:nowrap;}
+  .rs-upcoming{background:#e8f0ff;color:var(--blue);}
+  .rs-live{background:var(--cyan);color:var(--deep);animation:blink 2s infinite;}
+  .rs-done{background:#e8f5e9;color:#1b5e20;}
+  .rs-tbd{background:#f0f0f0;color:var(--sub);}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+
+  /* GALLERY */
+  #gallery{padding:80px 48px;background:var(--white);}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:36px;}
+  .gallery-item{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;position:relative;transition:transform .25s;}
+  .gallery-item:hover{transform:scale(1.03);}
+  .gallery-item.large{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;min-height:280px;}
+  .gi-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;}
+  .gi-inner.g1{background-color:#001155;}
+  .gi-inner.g2{background-color:#002b26;}
+  .gi-inner.g3{background-color:#1a0044;}
+  .gi-inner.g4{background-color:#220800;}
+  .gi-inner.g5{background-color:var(--surface);}
+  .gi-inner.g6{background-color:#001a33;}
+  .gi-inner.g7{background-color:#0d0d1a;}
+  .gi-label{font-family:'Orbitron',sans-serif;font-weight:900;font-size:.9rem;color:rgba(255,255,255,.12);}
+  .gi-inner.g5 .gi-label{color:rgba(0,0,0,.12);}
+  .gi-overlay{position:absolute;inset:0;background:transparent;transition:background .2s;display:flex;align-items:center;justify-content:center;}
+  .gallery-item:hover .gi-overlay{background:rgba(0,85,255,.25);}
+
+  /* FOOTER */
+  footer{background:var(--deep);padding:60px 48px 36px;}
+  .footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+  .footer-brand .logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1rem;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .footer-brand .logo span{color:var(--blue);}
+  .footer-brand .logo .fdiv{width:1px;height:14px;background:rgba(255,255,255,.15);}
+  .footer-brand p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.75;}
+  .footer-brand .fl a{color:var(--cyan);text-decoration:none;font-size:.74rem;margin-top:14px;display:inline-block;}
+  .footer-col h4{font-family:'Orbitron',sans-serif;font-size:.63rem;letter-spacing:.22em;color:var(--cyan);margin-bottom:16px;}
+  .footer-col ul{list-style:none;}
+  .footer-col ul li{margin-bottom:9px;}
+  .footer-col ul a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:color .2s;}
+  .footer-col ul a:hover{color:#fff;}
+  .footer-bottom{max-width:1300px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-copy{font-size:.72rem;color:rgba(255,255,255,.28);}
+  .footer-emails{display:flex;gap:14px;}
+  .footer-emails a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;}
+  .footer-emails a:hover{color:var(--cyan);}
+
+  @media(max-width:1024px){
+    nav{padding:0 28px;}
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    #page-hero,#featured,#news-grid,#calendar,#gallery{padding-left:28px;padding-right:28px;}
+    .ph-inner,.cal-layout{grid-template-columns:1fr;gap:28px;}
+    .featured-card{grid-template-columns:1fr;}
+    .fc-thumb{min-height:200px;}
+    .news-cards,.skeleton-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-item.large{grid-column:span 1;grid-row:span 1;aspect-ratio:1;}
+    footer{padding:48px 28px 28px;}
+    .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  }
+  @media(max-width:600px){
+    .news-cards,.skeleton-grid{grid-template-columns:1fr;}
+    .footer-inner{grid-template-columns:1fr;}
+    .filter-row{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="/mik-homepage-white.html" class="nav-logo"><span class="blue">MIK</span><span class="ndiv"></span>MOTION IN KOREA</a>
+  <ul class="nav-links">
+    <li><a href="/mik-identity.html">IDENTITY</a></li>
+    <li><a href="/mik-business.html">BUSINESS</a></li>
+    <li><a href="/mik-racing.html">ASSETS</a></li>
+    <li><a href="/mik-news.html" class="active">NEWS</a></li>
+    <li><a href="/mik-contact.html">CONTACT</a></li>
+  </ul>
+  <a href="/mik-contact.html" class="nav-cta">CONTACT US</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/mik-identity.html" onclick="toggleMenu()">IDENTITY</a>
+  <a href="/mik-business.html" onclick="toggleMenu()">BUSINESS</a>
+  <a href="/mik-racing.html" onclick="toggleMenu()">ASSETS</a>
+  <a href="/mik-news.html" onclick="toggleMenu()">NEWS</a>
+  <a href="/mik-contact.html" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="ph-inner">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:none;">
+        <span style="width:28px;height:2px;background:var(--cyan);display:block;"></span>
+        <span style="font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.3em;color:var(--cyan);">04 NEWS</span>
+      </div>
+      <h1 class="ph-h1">최신 소식 &<br><span class="cyan">미디어</span></h1>
+      <p class="ph-sub">MIK와 MIK Racing en1의 모든 소식.</p>
+    </div>
+    <div>
+      <div style="font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:.22em;color:rgba(255,255,255,.35);margin-bottom:12px;">카테고리 필터</div>
+      <div class="filter-pills">
+        <span class="fpill active" data-cat="all">전체</span>
+        <span class="fpill" data-cat="press">보도자료</span>
+        <span class="fpill" data-cat="race">레이스 리포트</span>
+        <span class="fpill" data-cat="notice">공지사항</span>
+        <span class="fpill" data-cat="biz">비즈니스</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED NEWS -->
+<section id="featured">
+  <div class="featured-wrap">
+    <div id="featuredArea">
+      <!-- JS로 렌더링 -->
+    </div>
+  </div>
+</section>
+
+<!-- NEWS GRID -->
+<section id="news-grid">
+  <div class="ng-wrap">
+    <div class="ng-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="ng-title">전체 뉴스</span>
+        <span class="ng-count" id="newsCount"></span>
+      </div>
+      <div class="filter-row">
+        <span class="nfpill on" data-cat="all">전체</span>
+        <span class="nfpill" data-cat="press">보도자료</span>
+        <span class="nfpill" data-cat="race">레이스</span>
+        <span class="nfpill" data-cat="notice">공지</span>
+        <span class="nfpill" data-cat="biz">비즈니스</span>
+      </div>
+    </div>
+
+    <!-- 로딩 스켈레톤 -->
+    <div class="skeleton-grid" id="skeleton">
+      <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+    </div>
+
+    <div class="news-cards" id="newsCards" style="display:none;"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="e-icon">📭</div>
+      <p>해당 카테고리의 뉴스가 없습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Race Calendar</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--deep);margin-bottom:6px;">2026 시즌 <span style="color:var(--blue);">레이스 일정</span></h2>
+    </div>
+    <div class="cal-layout" style="margin-top:40px;">
+      <div class="reveal">
+        <div class="cal-info-card">
+          <div class="cic-tag">2026 SEASON</div>
+          <div class="cic-title">현대 N 페스티벌 eN1 클래스</div>
+          <div class="cic-sub" id="calSub">일정 로딩 중...</div>
+        </div>
+      </div>
+      <div class="race-list reveal" id="raceList">
+        <div style="color:var(--sub);font-size:.85rem;padding:20px 0;">일정 로딩 중...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="sec-label">Media Gallery</div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--deep);">갤러리 & <span style="color:var(--blue);">미디어</span></h2>
+      </div>
+    </div>
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <!-- JS 또는 정적 폴백 -->
+      <div class="gallery-item large"><div class="gi-inner g1"><span class="gi-label">MIK Racing en1</span></div><div class="gi-overlay"></div></div>
+      <div class="gallery-item"><div class="gi-inner g2"><span class="gi-label">인제 마스터즈</span></div><div class="gi-overlay"></div></div>
+      <div class="gallery-item"><div class="gi-inner g3"><span class="gi-label">드라이버</span></div><div class="gi-overlay"></div></div>
+      <div class="gallery-item"><div class="gi-inner g4"><span class="gi-label">레이스 현장</span></div><div class="gi-overlay"></div></div>
+      <div class="gallery-item"><div class="gi-inner g6"><span class="gi-label">팀 미팅</span></div><div class="gi-overlay"></div></div>
+      <div class="gallery-item"><div class="gi-inner g7"><span class="gi-label">피트레인</span></div><div class="gi-overlay"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span>MIK</span><span class="fdiv"></span>MOTION IN KOREA</div>
+      <p>모터스포츠의 움직임을 넘어<br>감동으로 나아가는 기업, ㈜MIK.</p>
+      <div class="fl"><a href="https://www.mikrace.com" target="_blank">www.mikrace.com →</a></div>
+    </div>
+    <div class="footer-col"><h4>MENU</h4><ul>
+      <li><a href="/mik-homepage-white.html">Home</a></li>
+      <li><a href="/mik-identity.html">Identity</a></li>
+      <li><a href="/mik-business.html">Business</a></li>
+      <li><a href="/mik-racing.html">Assets</a></li>
+      <li><a href="/mik-news.html">News</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>NEWS</h4><ul>
+      <li><a href="#featured">최신 보도자료</a></li>
+      <li><a href="#news-grid">전체 뉴스</a></li>
+      <li><a href="#calendar">레이스 일정</a></li>
+      <li><a href="#gallery">갤러리</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>CONTACT</h4><ul>
+      <li><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></li>
+      <li><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 ㈜MIK (Motion In Korea). All rights reserved.</p>
+    <div class="footer-emails"><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></div>
+  </div>
+</footer>
+
+<script>
+// ━━ 카테고리 메타 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const CAT_META = {
+  press:  { label:'보도자료',      cls:'cat-press', thumbCls:'td', thumbTxt:'PRESS' },
+  race:   { label:'레이스 리포트', cls:'cat-race',  thumbCls:'td', thumbTxt:'RACE'  },
+  notice: { label:'공지사항',      cls:'cat-notice',thumbCls:'tb', thumbTxt:'MIK'   },
+  biz:    { label:'비즈니스',      cls:'cat-biz',   thumbCls:'tg', thumbTxt:'BIZ'   },
+};
+
+let allNews = [];
+let calData = [];
+let currentCat = 'all';
+
+// ━━ 날짜 포맷 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const fmtDate = d => String(d||'').slice(0,10).replace(/-/g,'.');
+
+// ━━ 뉴스 카드 HTML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function newsCardHtml(n) {
+  const cat = CAT_META[n.category] || CAT_META.notice;
+  const thumbStyle = n.thumbnail
+    ? `style="background-image:url('${n.thumbnail}');background-size:cover;background-position:center;"`
+    : '';
+  const thumbTxt = n.thumbnail ? '' : `<span class="nc-thumb-txt">${cat.thumbTxt}</span>`;
+  return `
+<a class="nc" href="/news/${n.slug}.html" data-cat="${n.category||'notice'}">
+  <div class="nc-thumb ${n.thumbnail ? '' : cat.thumbCls}" ${thumbStyle}>
+    ${thumbTxt}
+  </div>
+  <div class="nc-body">
+    <span class="nc-cat ${cat.cls}">${cat.label}</span>
+    <div class="nc-title">${n.title}</div>
+    <div class="nc-date">${fmtDate(n.date)}</div>
+  </div>
+</a>`;
+}
+
+// ━━ 피처드 카드 HTML ━━━━━━━━━━━━━━━━━━━━━━━━━━
+function featuredHtml(n) {
+  if (!n) return '';
+  const cat = CAT_META[n.category] || CAT_META.notice;
+  const thumbStyle = n.thumbnail
+    ? `style="background-image:url('${n.thumbnail}');background-size:cover;background-position:center;"`
+    : '';
+  return `
+<a class="featured-card" href="/news/${n.slug}.html">
+  <div class="fc-thumb" ${thumbStyle}>
+    ${!n.thumbnail ? `<div class="fc-thumb-text">en1</div>` : ''}
+    <div class="fc-thumb-badge">최신 ${cat.label}</div>
+    <div class="fc-thumb-date">${fmtDate(n.date)}</div>
+  </div>
+  <div class="fc-body">
+    <span class="fc-cat ${cat.cls}">${cat.label}</span>
+    <div class="fc-title">${n.title}</div>
+    <div class="fc-excerpt">${n.excerpt || ''}</div>
+    <span class="fc-link">전문 보기 →</span>
+  </div>
+</a>`;
+}
+
+// ━━ 레이스 일정 렌더 ━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderCalendar(data) {
+  const statusMap = {
+    upcoming:{cls:'rs-upcoming',txt:'UPCOMING'},
+    live:    {cls:'rs-live',    txt:'LIVE'},
+    done:    {cls:'rs-done',    txt:'완료'},
+    tbd:     {cls:'rs-tbd',     txt:'TBD'},
+  };
+  if (!data.length) {
+    document.getElementById('raceList').innerHTML = '<div style="color:var(--sub);font-size:.85rem;padding:20px 0;">등록된 일정이 없습니다.</div>';
+    document.getElementById('calSub').textContent = '일정 미정';
+    return;
+  }
+  document.getElementById('calSub').textContent = `총 ${data.length}라운드 · ${data[0]?.date?.slice(0,4)||2026}시즌`;
+  document.getElementById('raceList').innerHTML = data.map(r => {
+    const st = statusMap[r.status] || statusMap.tbd;
+    return `<div class="race-item">
+      <div class="ri-round">RD${r.round}</div>
+      <div>
+        <div class="ri-name">${r.title}</div>
+        <div class="ri-location">${r.location||'미정'}</div>
+      </div>
+      <div>
+        <div class="ri-date">${fmtDate(r.date)}</div>
+        <div class="ri-status ${st.cls}">${st.txt}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ━━ 갤러리 렌더 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderGallery(data) {
+  if (!data.length) return;
+  const colors = ['g1','g2','g3','g4','g6','g7'];
+  document.getElementById('galleryGrid').innerHTML = data.map((g,i) => {
+    const isLarge = i === 0;
+    const bg = g.image ? `background-image:url('${g.image}');background-size:cover;background-position:center;` : '';
+    return `<div class="gallery-item${isLarge?' large':''}">
+      <div class="gi-inner ${bg ? '' : colors[i%colors.length]}" style="${bg}">
+        ${!g.image ? `<span class="gi-label">${g.title||''}</span>` : ''}
+      </div>
+      <div class="gi-overlay"></div>
+    </div>`;
+  }).join('');
+}
+
+// ━━ 필터 & 렌더 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderNews(cat) {
+  currentCat = cat;
+  const filtered = cat === 'all' ? allNews : allNews.filter(n => n.category === cat);
+  const cards = document.getElementById('newsCards');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('newsCount');
+
+  count.textContent = `${filtered.length}건`;
+
+  if (!filtered.length) {
+    cards.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+  cards.style.display = 'grid';
+  empty.style.display = 'none';
+  cards.innerHTML = filtered.map(newsCardHtml).join('');
+}
+
+// ━━ 데이터 패치 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function loadData() {
+  try {
+    // 뉴스
+    const res = await fetch('/news-data.json');
+    if (res.ok) {
+      allNews = await res.json();
+      // 피처드 우선 정렬
+      allNews.sort((a,b) => {
+        if (a.featured && !b.featured) return -1;
+        if (!a.featured && b.featured) return 1;
+        return new Date(b.date) - new Date(a.date);
+      });
+      // 피처드 뉴스 → 상단 Featured
+      const featured = allNews.find(n => n.featured) || allNews[0];
+      document.getElementById('featuredArea').innerHTML = featuredHtml(featured);
+      // 스켈레톤 제거, 카드 표시
+      document.getElementById('skeleton').style.display = 'none';
+      document.getElementById('newsCards').style.display = 'grid';
+      renderNews('all');
+    } else {
+      throw new Error('no news-data.json');
+    }
+  } catch(e) {
+    // 뉴스 없음 — 스켈레톤 숨기고 안내
+    document.getElementById('skeleton').style.display = 'none';
+    document.getElementById('featuredArea').innerHTML = '';
+    document.getElementById('newsCards').style.display = 'none';
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('newsCount').textContent = '0건';
+  }
+
+  // 캘린더
+  try {
+    const res = await fetch('/calendar-data.json');
+    if (res.ok) renderCalendar(await res.json());
+  } catch(e) { renderCalendar([]); }
+
+  // 갤러리
+  try {
+    const res = await fetch('/gallery-data.json');
+    if (res.ok) renderGallery(await res.json());
+  } catch(e) {}
+}
+
+// ━━ 필터 클릭 이벤트 ━━━━━━━━━━━━━━━━━━━━━━━━━━
+document.querySelectorAll('.fpill').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.fpill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    const cat = el.dataset.cat;
+    // 하단 nfpill 동기화
+    document.querySelectorAll('.nfpill').forEach(p => {
+      p.classList.toggle('on', p.dataset.cat === cat);
+    });
+    renderNews(cat);
+  });
+});
+document.querySelectorAll('.nfpill').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.nfpill').forEach(p => p.classList.remove('on'));
+    el.classList.add('on');
+    const cat = el.dataset.cat;
+    document.querySelectorAll('.fpill').forEach(p => {
+      p.classList.toggle('active', p.dataset.cat === cat);
+    });
+    renderNews(cat);
+  });
+});
+
+// ━━ 네비 & 리빌 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('elevated', scrollY > 20);
+});
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+const obs = new IntersectionObserver((e) => {
+  e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ━━ Netlify Identity 리다이렉트 ━━━━━━━━━━━━━━━
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    }
+  });
+}
+
+// ━━ 실행 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+loadData();
+</script>
+</body>
+</html>
