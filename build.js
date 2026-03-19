@@ -94,6 +94,7 @@ const CAT = {
 // HTML 파일 복사
 // ───────────────────────────────────────────────────────────
 const HTML_FILES = [
+  'index.html',
   'mik-homepage-white.html',
   'mik-identity.html',
   'mik-business.html',
