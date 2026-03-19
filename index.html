@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="㈜MIK — Beyond Motion, Toward Emotion. 모터스포츠의 움직임을 넘어 감동으로 나아가는 기업, Motion In Korea.">
+<meta name="keywords" content="MIK, 모터스포츠, 레이싱, MIK Racing, 스폰서십, 인제마스터즈, 드라이버 매니지먼트">
+<meta property="og:title" content="MIK — Beyond Motion, Toward Emotion">
+<meta property="og:description" content="모터스포츠의 움직임을 넘어 감동으로 나아가는 기업, ㈜MIK">
+<title>MIK — Beyond Motion, Toward Emotion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0055FF;
+    --cyan: #00D9C8;
+    --deep: #0a0a14;
+    --ink: #1a1a2e;
+    --mid: #444455;
+    --sub: #888899;
+    --line: #e4e4ec;
+    --surface: #f5f5f8;
+    --white: #ffffff;
+    --grad: linear-gradient(135deg, #0055FF, #00D9C8);
+    --nav-h: 72px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--deep);
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ══ NAV ══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+    transition: box-shadow .3s;
+  }
+  nav.elevated { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 1.1rem; letter-spacing: .06em;
+    text-decoration: none; color: var(--deep);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo .blue { color: var(--blue); }
+  .nav-logo .div { width: 1px; height: 16px; background: var(--line); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--sub); text-decoration: none;
+    font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    transition: color .2s; position: relative; padding-bottom: 4px;
+  }
+  .nav-links a:hover { color: var(--deep); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--blue); border-radius: 2px;
+    transform: scaleX(0); transition: transform .2s;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--blue); color: var(--white);
+    padding: .52rem 1.35rem; border-radius: 3px;
+    font-size: .76rem; font-weight: 700; font-family: 'Orbitron', sans-serif;
+    letter-spacing: .1em; text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: #0044dd; transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--deep); border-radius: 2px; transition: .3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: var(--white); border-top: 1px solid var(--line);
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    padding: 28px; z-index: 999; flex-direction: column; gap: 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--mid); text-decoration: none;
+    font-family: 'Orbitron', sans-serif; font-size: .82rem; letter-spacing: .12em;
+    padding-bottom: 14px; border-bottom: 1px solid var(--line); transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--blue); }
+  .mobile-menu .btn-primary { text-align: center; padding: .85rem; }
+
+  /* ══ BUTTONS ══ */
+  .btn-primary {
+    background: var(--blue); color: var(--white);
+    padding: .85rem 2.2rem; border-radius: 3px;
+    font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700;
+    letter-spacing: .1em; text-decoration: none; display: inline-block;
+    transition: background .2s, transform .15s, box-shadow .2s;
+  }
+  .btn-primary:hover { background: #0044dd; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,85,255,.3); }
+  .btn-outline {
+    border: 2px solid var(--deep); color: var(--deep);
+    padding: .82rem 2.2rem; border-radius: 3px;
+    font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700;
+    letter-spacing: .1em; text-decoration: none; display: inline-block;
+    transition: border-color .2s, color .2s, transform .15s;
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+  .btn-outline-white {
+    border: 2px solid rgba(255,255,255,.6); color: var(--white);
+    padding: .82rem 2.2rem; border-radius: 3px;
+    font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700;
+    letter-spacing: .1em; text-decoration: none; display: inline-block;
+    transition: border-color .2s, background .2s, transform .15s;
+  }
+  .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.12); transform: translateY(-2px); }
+
+  /* ══ SCROLL REVEAL ══ */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: .1s; }
+  .reveal-d2 { transition-delay: .2s; }
+  .reveal-d3 { transition-delay: .3s; }
+
+  /* ══════════════════════════════
+     HERO — 좌/우 분할
+  ══════════════════════════════ */
+  #hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 100vh; padding-top: var(--nav-h);
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 48px;
+    position: relative;
+  }
+  /* 왼쪽 배경 미세 패턴 */
+  .hero-left::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px; opacity: .5;
+    mask-image: radial-gradient(ellipse 80% 80% at 20% 60%, black 30%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .eyebrow-line { width: 32px; height: 2px; background: var(--blue); }
+  .eyebrow-text {
+    font-family: 'Orbitron', sans-serif; font-size: .7rem;
+    letter-spacing: .3em; color: var(--blue); text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05;
+    color: var(--deep); margin-bottom: 28px;
+    opacity: 0; animation: fadeUp .7s .35s forwards;
+  }
+  .hero-title .blue { color: var(--blue); }
+  .hero-desc {
+    font-size: clamp(.9rem, 1.4vw, 1.05rem); color: var(--sub);
+    line-height: 1.85; max-width: 460px; margin-bottom: 44px;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .7s .65s forwards;
+  }
+  /* 왼쪽 하단 수치 표시 */
+  .hero-kpi-row {
+    display: flex; gap: 0; margin-top: 56px;
+    border-top: 1px solid var(--line);
+    opacity: 0; animation: fadeUp .7s .8s forwards;
+  }
+  .hero-kpi {
+    padding: 20px 28px 0 0; margin-right: 28px;
+    border-right: 1px solid var(--line); flex-shrink: 0;
+  }
+  .hero-kpi:last-child { border-right: none; }
+  .hero-kpi-num {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 1.6rem; color: var(--blue); line-height: 1; margin-bottom: 4px;
+  }
+  .hero-kpi-label { font-size: .75rem; color: var(--sub); line-height: 1.4; }
+
+  /* 오른쪽 — 다크 슬로건 패널 */
+  .hero-right {
+    background: var(--deep); position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 56px;
+  }
+  .hero-right::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,85,255,.18), rgba(0,217,200,.07));
+    pointer-events: none;
+  }
+  /* 대각 속도선 */
+  .hero-speed {
+    position: absolute; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,85,255,.3), transparent);
+  }
+  .hero-right-content { position: relative; z-index: 1; }
+  .slogan-sup {
+    font-family: 'Orbitron', sans-serif; font-size: .68rem;
+    letter-spacing: .3em; color: rgba(255,255,255,.35);
+    margin-bottom: 16px;
+  }
+  .slogan-main {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem); line-height: 1.1;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .slogan-main .cyan { color: var(--cyan); }
+  .slogan-divider {
+    width: 64px; height: 3px;
+    background: var(--grad);
+    margin: 24px 0;
+  }
+  .slogan-kr {
+    font-size: .92rem; color: rgba(255,255,255,.55);
+    line-height: 1.9; font-weight: 300;
+  }
+  .slogan-kr strong { color: rgba(255,255,255,.85); font-weight: 600; }
+  /* 오른쪽 하단 racing badge */
+  .hero-racing-badge {
+    position: absolute; bottom: 40px; right: 48px;
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+    padding: 12px 18px; border-radius: 4px;
+  }
+  .badge-blink { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+  .badge-info { font-family: 'Orbitron', sans-serif; font-size: .68rem; color: var(--white); font-weight: 700; }
+  .badge-info small { display: block; font-size: .6rem; color: rgba(255,255,255,.45); font-family: 'Pretendard', sans-serif; margin-top: 2px; font-weight: 400; }
+
+  /* scroll hint */
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 48px;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0; animation: fadeIn 1s 1.2s forwards;
+  }
+  .scroll-hint span { font-size: .65rem; letter-spacing: .2em; color: var(--sub); text-transform: uppercase; }
+  .scroll-bar { width: 40px; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+  .scroll-bar::after { content: ''; position: absolute; left: -100%; top: 0; width: 100%; height: 100%; background: var(--blue); animation: scrollSlide 2s ease-in-out infinite; }
+  @keyframes scrollSlide { 0%{left:-100%} 50%,100%{left:100%} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* ══════════════════════════════
+     STATS — 블루 풀컬러 배리어
+  ══════════════════════════════ */
+  #stats {
+    background: var(--blue);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    max-width: 1300px; margin: 0 auto;
+  }
+  .stat-item {
+    padding: 48px 32px; text-align: center;
+    border-right: 1px solid rgba(255,255,255,.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--white);
+    line-height: 1; margin-bottom: 10px;
+  }
+  .stat-label { font-size: .78rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+  /* ══════════════════════════════
+     BUSINESS — B형 피처 컬러 레이아웃
+  ══════════════════════════════ */
+  #business {
+    padding: 120px 48px; background: var(--white);
+  }
+  .biz-wrap { max-width: 1300px; margin: 0 auto; }
+  .sec-label {
+    font-family: 'Orbitron', sans-serif; font-size: .68rem;
+    letter-spacing: .3em; color: var(--blue); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-label::before { content: ''; width: 28px; height: 2px; background: var(--blue); display: block; }
+  .sec-h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.15;
+    color: var(--deep); margin-bottom: 14px;
+  }
+  .sec-desc { color: var(--sub); font-size: .95rem; line-height: 1.85; max-width: 520px; margin-bottom: 56px; }
+
+  .biz-b-layout {
+    display: grid; grid-template-columns: 1fr 360px; gap: 14px; align-items: stretch;
+  }
+
+  /* 피처 패널 */
+  .biz-feature {
+    border-radius: 8px; overflow: hidden; position: relative;
+    min-height: 500px; display: flex; flex-direction: column; justify-content: flex-end;
+    cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .biz-feature:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+  .biz-feature-bg {
+    position: absolute; inset: 0; transition: opacity .4s;
+  }
+  .bg-01 { background: linear-gradient(155deg, #001155 0%, #0044cc 50%, #0066ff 100%); }
+  .bg-02 { background: linear-gradient(155deg, #002b26 0%, #00a898 50%, #00d9c8 100%); }
+  .bg-03 { background: linear-gradient(155deg, #1a0044 0%, #6600cc 50%, #9933ff 100%); }
+  .bg-04 { background: linear-gradient(155deg, #220800 0%, #cc4400 50%, #ff6600 100%); }
+  .biz-feature-texture {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 70% 20%, rgba(255,255,255,.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .biz-feature-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 55%, transparent 100%);
+  }
+  .biz-deco-num {
+    position: absolute; top: 20px; right: 24px;
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 6.5rem; line-height: 1; opacity: .07; color: #fff;
+    pointer-events: none; user-select: none;
+  }
+  .biz-feature-badge {
+    position: absolute; top: 28px; left: 28px;
+    font-family: 'Orbitron', sans-serif; font-size: .62rem;
+    letter-spacing: .22em; color: rgba(255,255,255,.55);
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+    padding: .28rem .75rem; border-radius: 20px;
+  }
+  .biz-feature-body {
+    position: relative; z-index: 2; padding: 36px 40px;
+  }
+  .biz-feature-num {
+    font-family: 'Orbitron', sans-serif; font-size: .65rem;
+    letter-spacing: .25em; color: rgba(255,255,255,.45); margin-bottom: 10px;
+  }
+  .biz-feature-name {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem); line-height: 1.15;
+    color: #fff; margin-bottom: 14px;
+  }
+  .biz-feature-desc {
+    font-size: .87rem; color: rgba(255,255,255,.68); line-height: 1.8;
+    margin-bottom: 22px; max-width: 500px;
+  }
+  .biz-feature-kws { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+  .biz-feature-kw {
+    font-family: 'Orbitron', sans-serif; font-size: .65rem;
+    color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.28);
+    padding: .25rem .7rem; border-radius: 20px; letter-spacing: .05em;
+  }
+  .biz-feature-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: #fff; font-family: 'Orbitron', sans-serif; font-size: .74rem;
+    font-weight: 700; letter-spacing: .1em; text-decoration: none;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+    padding: .65rem 1.4rem; border-radius: 3px;
+    transition: background .2s, gap .2s;
+  }
+  .biz-feature-link:hover { background: rgba(255,255,255,.24); gap: 16px; }
+
+  /* 사이드 리스트 */
+  .biz-side { display: flex; flex-direction: column; gap: 8px; }
+  .biz-side-card {
+    flex: 1; border-radius: 8px; overflow: hidden; position: relative;
+    padding: 22px 22px; cursor: pointer; border: 2px solid transparent;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform .2s, border-color .2s;
+  }
+  .biz-side-card:hover { transform: translateX(5px); }
+  .biz-side-card.active { border-color: rgba(255,255,255,.4); }
+  .side-bg-01 { background: linear-gradient(135deg, #001155, #0044cc); }
+  .side-bg-02 { background: linear-gradient(135deg, #002b26, #00a898); }
+  .side-bg-03 { background: linear-gradient(135deg, #1a0044, #6600cc); }
+  .side-bg-04 { background: linear-gradient(135deg, #220800, #cc4400); }
+  .biz-side-inner { position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(0,0,0,.18)); pointer-events: none; }
+  .biz-side-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; position: relative; }
+  .biz-side-num { font-family: 'Orbitron', sans-serif; font-size: .6rem; color: rgba(255,255,255,.45); letter-spacing: .2em; }
+  .biz-side-arrow { color: rgba(255,255,255,.4); font-size: .9rem; transition: color .2s, transform .2s; }
+  .biz-side-card:hover .biz-side-arrow { color: #fff; transform: translateX(3px); }
+  .biz-side-name { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .8rem; color: #fff; line-height: 1.3; margin-bottom: 4px; position: relative; }
+  .biz-side-desc { font-size: .73rem; color: rgba(255,255,255,.55); line-height: 1.5; position: relative; }
+  .biz-side-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 9px; position: relative; }
+  .biz-side-tag { font-size: .6rem; color: rgba(255,255,255,.65); background: rgba(255,255,255,.1); padding: .18rem .5rem; border-radius: 20px; }
+
+  /* ══════════════════════════════
+     ASSETS BANNER
+  ══════════════════════════════ */
+  #assets-banner {
+    background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 80px 48px;
+  }
+  .assets-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+  }
+  .assets-left {}
+  .assets-label { font-family: 'Orbitron', sans-serif; font-size: .68rem; letter-spacing: .3em; color: var(--blue); margin-bottom: 14px; }
+  .assets-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem); color: var(--deep); line-height: 1.15; margin-bottom: 14px;
+  }
+  .assets-title .blue { color: var(--blue); }
+  .assets-desc { color: var(--sub); font-size: .9rem; line-height: 1.85; max-width: 520px; margin-bottom: 28px; }
+  .assets-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .assets-right { display: flex; flex-direction: column; gap: 10px; }
+  .assets-badge {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 6px; padding: 14px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    white-space: nowrap;
+  }
+  .assets-badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ab-cyan { background: var(--cyan); animation: blink 2s ease-in-out infinite; }
+  .ab-blue { background: var(--blue); }
+  .ab-dark { background: var(--deep); }
+  .assets-badge-text { font-weight: 700; font-size: .82rem; color: var(--deep); }
+  .assets-badge-text small { display: block; font-size: .72rem; color: var(--sub); font-weight: 400; margin-top: 2px; }
+
+  /* ══════════════════════════════
+     NEWS
+  ══════════════════════════════ */
+  #news { padding: 120px 48px; background: var(--white); }
+  .news-wrap { max-width: 1300px; margin: 0 auto; }
+  .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+  .news-more {
+    font-family: 'Orbitron', sans-serif; font-size: .7rem; letter-spacing: .12em;
+    color: var(--blue); text-decoration: none; display: flex; align-items: center; gap: 7px;
+    transition: gap .2s;
+  }
+  .news-more:hover { gap: 13px; }
+  .news-more::after { content: '→'; }
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .news-card {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 8px; overflow: hidden; cursor: pointer;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.09); border-color: var(--blue); }
+  .news-thumb {
+    height: 180px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .news-thumb.t-dark { background: var(--deep); }
+  .news-thumb.t-blue { background: #e8f0ff; }
+  .news-thumb.t-grey { background: var(--surface); }
+  .news-thumb-text {
+    font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2rem;
+    opacity: .25; user-select: none; letter-spacing: .05em;
+  }
+  .news-thumb.t-dark .news-thumb-text { color: var(--cyan); }
+  .news-thumb.t-blue .news-thumb-text { color: var(--blue); }
+  .news-thumb.t-grey .news-thumb-text { color: var(--mid); }
+  .news-body { padding: 22px; }
+  .news-cat {
+    display: inline-block; font-family: 'Orbitron', sans-serif; font-size: .62rem;
+    letter-spacing: .2em; margin-bottom: 10px;
+    padding: .22rem .6rem; border-radius: 20px; font-weight: 700;
+  }
+  .cat-press { background: #e8f0ff; color: var(--blue); }
+  .cat-notice { background: #e8faf8; color: #007a6e; }
+  .cat-biz { background: #f0f0f0; color: var(--mid); }
+  .news-title { font-size: .92rem; font-weight: 700; color: var(--deep); line-height: 1.55; margin-bottom: 12px; }
+  .news-date { font-size: .75rem; color: var(--sub); }
+
+  /* ══════════════════════════════
+     CONTACT CTA — 블루 풀 섹션
+  ══════════════════════════════ */
+  #contact-cta {
+    background: var(--blue); padding: 100px 48px;
+    position: relative; overflow: hidden;
+  }
+  #contact-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  #contact-cta::after {
+    content: ''; position: absolute;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,217,200,.15), transparent 65%);
+    right: -100px; top: -200px; pointer-events: none;
+  }
+  .cta-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; position: relative; z-index: 1;
+  }
+  .cta-tag { font-family: 'Orbitron', sans-serif; font-size: .68rem; letter-spacing: .3em; color: rgba(255,255,255,.55); margin-bottom: 14px; }
+  .cta-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem); color: #fff; line-height: 1.15; margin-bottom: 14px;
+  }
+  .cta-desc { color: rgba(255,255,255,.65); font-size: .92rem; line-height: 1.8; max-width: 480px; }
+  .cta-btns { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .btn-white {
+    background: #fff; color: var(--blue);
+    padding: .82rem 1.8rem; border-radius: 3px;
+    font-family: 'Orbitron', sans-serif; font-size: .76rem; font-weight: 700;
+    letter-spacing: .08em; text-decoration: none; white-space: nowrap;
+    transition: transform .15s, box-shadow .2s;
+    display: block; text-align: center;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--deep); padding: 64px 48px 40px;
+  }
+  .footer-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
+  }
+  .footer-brand .logo {
+    font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem;
+    color: var(--white); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .footer-brand .logo span { color: var(--blue); }
+  .footer-brand .logo .fdiv { width: 1px; height: 14px; background: rgba(255,255,255,.15); }
+  .footer-brand p { font-size: .8rem; color: rgba(255,255,255,.45); line-height: 1.75; }
+  .footer-brand .f-link {
+    margin-top: 16px; font-size: .75rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .footer-brand .f-link a { color: var(--cyan); text-decoration: none; transition: opacity .2s; }
+  .footer-brand .f-link a:hover { opacity: .7; }
+  .footer-col h4 {
+    font-family: 'Orbitron', sans-serif; font-size: .65rem;
+    letter-spacing: .22em; color: var(--cyan); margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul a {
+    color: rgba(255,255,255,.45); text-decoration: none; font-size: .82rem;
+    transition: color .2s;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1300px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
+  }
+  .footer-copy { font-size: .74rem; color: rgba(255,255,255,.3); }
+  .footer-emails { display: flex; gap: 16px; }
+  .footer-emails a { font-size: .75rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+  .footer-emails a:hover { color: var(--cyan); }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 1100px) {
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { min-height: 340px; padding: 56px 40px; }
+    .hero-racing-badge { display: none; }
+    .biz-b-layout { grid-template-columns: 1fr; }
+    .biz-feature { min-height: 400px; }
+    .biz-side { display: grid; grid-template-columns: repeat(2,1fr); }
+    .assets-inner { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .cta-btns { flex-direction: row; align-items: flex-start; }
+  }
+  @media (max-width: 1024px) {
+    nav { padding: 0 28px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    #business, #news { padding: 80px 28px; }
+    #assets-banner, #contact-cta { padding: 64px 28px; }
+    footer { padding: 48px 28px 32px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    .hero-left { padding: 56px 28px; }
+    .hero-right { padding: 48px 28px; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.15); }
+    .news-grid { grid-template-columns: 1fr; }
+    .biz-side { grid-template-columns: 1fr; }
+    #business, #news { padding: 64px 20px; }
+  }
+  @media (max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-kpi-row { gap: 0; }
+    .hero-kpi { padding: 16px 20px 0 0; margin-right: 20px; }
+    .cta-btns { flex-direction: column; width: 100%; }
+    .btn-white { width: 100%; }
+    .btn-outline-white { width: 100%; text-align: center; }
+  }
+</style>
+
+<!-- ★ 구조화 데이터 (Google 검색 최적화) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.miksports.com/#website",
+      "url": "https://www.miksports.com/",
+      "name": "MIK | Motion In Korea",
+      "description": "모터스포츠의 움직임을 넘어 감동으로 나아가는 기업 ㈜MIK",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.miksports.com/news?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.miksports.com/#organization",
+      "name": "㈜MIK",
+      "alternateName": "Motion In Korea",
+      "url": "https://www.miksports.com/",
+      "logo": "https://www.miksports.com/logo.png",
+      "contactPoint": [
+        {"@type": "ContactPoint", "email": "dkyang@miksports.com", "contactType": "business"},
+        {"@type": "ContactPoint", "email": "racrodk@gmail.com", "contactType": "general"}
+      ],
+      "sameAs": ["https://www.mikrace.com"]
+    },
+    {
+      "@type": "SiteLinksSearchBox",
+      "target": "https://www.miksports.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.miksports.com/news?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://www.miksports.com/">
+<meta property="og:url" content="https://www.miksports.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MIK | Motion In Korea">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="blue">MIK</span>
+    <span class="div"></span>
+    MOTION IN KOREA
+  </a>
+  <ul class="nav-links">
+    <li><a href="#identity">IDENTITY</a></li>
+    <li><a href="#business">BUSINESS</a></li>
+    <li><a href="mik-racing.html">ASSETS</a></li>
+    <li><a href="#news">NEWS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <a href="mailto:dkyang@miksports.com" class="nav-cta">CONTACT US</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#identity" onclick="toggleMenu()">IDENTITY</a>
+  <a href="#business" onclick="toggleMenu()">BUSINESS</a>
+  <a href="mik-racing.html" onclick="toggleMenu()">ASSETS</a>
+  <a href="#news" onclick="toggleMenu()">NEWS</a>
+  <a href="#contact" onclick="toggleMenu()">CONTACT</a>
+  <a href="mailto:dkyang@miksports.com" class="btn-primary">CONTACT US</a>
+</div>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section id="hero">
+  <!-- 왼쪽: 화이트 콘텐츠 -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Motion In Korea — 2026</span>
+    </div>
+    <h1 class="hero-title">
+      BEYOND<br>MOTION,<br><span class="blue">TOWARD<br>EMOTION.</span>
+    </h1>
+    <p class="hero-desc">
+      모터스포츠의 '움직임(Motion)'이란 수단을 넘어,<br>
+      감동이라는 목적으로 나아가는 흐름을 만드는 기업.<br>
+      ㈜MIK는 레이싱 현장에서 비즈니스 솔루션을 설계합니다.
+    </p>
+    <div class="hero-btns">
+      <a href="mailto:dkyang@miksports.com" class="btn-primary">비즈니스 문의</a>
+      <a href="https://www.mikrace.com" target="_blank" rel="noopener" class="btn-outline">MIK Racing →</a>
+    </div>
+    <div class="hero-kpi-row">
+      <div class="hero-kpi">
+        <div class="hero-kpi-num" data-target="4">0</div>
+        <div class="hero-kpi-label">핵심<br>사업 솔루션</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-num" data-target="2">0</div>
+        <div class="hero-kpi-label">소속<br>드라이버</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-num" data-target="1">0</div>
+        <div class="hero-kpi-label">레이싱팀<br>Technical Lab</div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-bar"></div>
+    </div>
+  </div>
+
+  <!-- 오른쪽: 다크 슬로건 패널 -->
+  <div class="hero-right">
+    <div class="hero-speed" style="width:80%;top:28%;left:-10%;transform:rotate(-5deg);"></div>
+    <div class="hero-speed" style="width:60%;top:42%;left:10%;transform:rotate(-5deg);opacity:.5;"></div>
+    <div class="hero-right-content">
+      <div class="slogan-sup">㈜MIK — Motion In Korea</div>
+      <div class="slogan-main">
+        BEYOND<br>MOTION,<br><span class="cyan">TOWARD<br>EMOTION.</span>
+      </div>
+      <div class="slogan-divider"></div>
+      <div class="slogan-kr">
+        모터스포츠의 <strong>'움직임(Motion)'</strong>이란 수단을 넘어,<br>
+        <strong>'감동(Emotion)'</strong>이라는 목적으로<br>
+        나아가는 흐름을 만드는 기업.
+      </div>
+    </div>
+    <div class="hero-racing-badge">
+      <div class="badge-blink"></div>
+      <div class="badge-info">
+        2026 SEASON ACTIVE
+        <small>MIK Racing en1 · eN1 클래스</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     STATS
+══════════════════════════════ -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="4">4</div>
+      <div class="stat-label">핵심 비즈니스<br>솔루션</div>
+    </div>
+    <div class="stat-item reveal reveal-d1">
+      <div class="stat-num">2026</div>
+      <div class="stat-label">참전 시즌<br>eN1 클래스</div>
+    </div>
+    <div class="stat-item reveal reveal-d2">
+      <div class="stat-num" data-target="2">2</div>
+      <div class="stat-label">소속 드라이버<br>MIK Racing en1</div>
+    </div>
+    <div class="stat-item reveal reveal-d3">
+      <div class="stat-num">EV</div>
+      <div class="stat-label">전기차 레이싱<br>Technical Lab</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     BUSINESS — B형 컬러 피처
+══════════════════════════════ -->
+<section id="business">
+  <div class="biz-wrap">
+    <div class="reveal">
+      <div class="sec-label">02 Business Solutions</div>
+      <h2 class="sec-h2">모터스포츠 생태계를<br>설계합니다</h2>
+      <p class="sec-desc">콘텐츠 IP 개발부터 대회 운영, 드라이버 매니지먼트, 레이싱팀 운영까지 — MIK는 모터스포츠 비즈니스의 전 사이클을 하나의 시스템으로 연결합니다.</p>
+    </div>
+
+    <div class="biz-b-layout reveal">
+      <!-- 피처 패널 (왼쪽) -->
+      <div class="biz-feature" id="bizFeature">
+        <div class="biz-feature-bg bg-01" id="bizBg"></div>
+        <div class="biz-feature-texture"></div>
+        <div class="biz-feature-overlay"></div>
+        <div class="biz-deco-num" id="bizDeco">01</div>
+        <div class="biz-feature-badge" id="bizBadge">PROMOTER &amp; ORGANIZER</div>
+        <div class="biz-feature-body">
+          <div class="biz-feature-num" id="bizNum">01 / Promoter &amp; Organizer</div>
+          <h3 class="biz-feature-name" id="bizName">콘텐츠 IP 기획 &amp;<br>이벤트 설계</h3>
+          <p class="biz-feature-desc" id="bizDesc">모터스포츠 콘텐츠 IP를 기획하고 지속 가능한 이벤트 생태계를 구축합니다. 인제 마스터즈를 비롯한 대형 대회의 기획·운영·수익화까지 전 과정을 담당합니다.</p>
+          <div class="biz-feature-kws" id="bizKws">
+            <span class="biz-feature-kw">Value Creation</span>
+            <span class="biz-feature-kw">Event Design</span>
+            <span class="biz-feature-kw">Sustainable IP</span>
+          </div>
+          <a href="mik-business.html#pillar-01" class="biz-feature-link" id="bizLink">상세 보기 →</a>
+        </div>
+      </div>
+
+      <!-- 사이드 리스트 (오른쪽) -->
+      <div class="biz-side">
+        <div class="biz-side-card side-bg-01 active" data-idx="0" onclick="switchBiz(this)">
+          <div class="biz-side-inner"></div>
+          <div class="biz-side-top">
+            <span class="biz-side-num">01</span>
+            <span class="biz-side-arrow">›</span>
+          </div>
+          <div class="biz-side-name">Promoter &amp; Organizer</div>
+          <div class="biz-side-desc">콘텐츠 IP 기획 · 이벤트 운영</div>
+          <div class="biz-side-tags">
+            <span class="biz-side-tag">Value Creation</span>
+            <span class="biz-side-tag">Event Design</span>
+          </div>
+        </div>
+        <div class="biz-side-card side-bg-02" data-idx="1" onclick="switchBiz(this)">
+          <div class="biz-side-inner"></div>
+          <div class="biz-side-top">
+            <span class="biz-side-num">02</span>
+            <span class="biz-side-arrow">›</span>
+          </div>
+          <div class="biz-side-name">Motorsports Solution</div>
+          <div class="biz-side-desc">기업·지자체 원스톱 대회 운영</div>
+          <div class="biz-side-tags">
+            <span class="biz-side-tag">Expertise</span>
+            <span class="biz-side-tag">Agency Service</span>
+          </div>
+        </div>
+        <div class="biz-side-card side-bg-03" data-idx="2" onclick="switchBiz(this)">
+          <div class="biz-side-inner"></div>
+          <div class="biz-side-top">
+            <span class="biz-side-num">03</span>
+            <span class="biz-side-arrow">›</span>
+          </div>
+          <div class="biz-side-name">Athlete Management</div>
+          <div class="biz-side-desc">드라이버 발굴 · 육성 · 상업화</div>
+          <div class="biz-side-tags">
+            <span class="biz-side-tag">Star Discovery</span>
+            <span class="biz-side-tag">Career Path</span>
+          </div>
+        </div>
+        <div class="biz-side-card side-bg-04" data-idx="3" onclick="switchBiz(this)">
+          <div class="biz-side-inner"></div>
+          <div class="biz-side-top">
+            <span class="biz-side-num">04</span>
+            <span class="biz-side-arrow">›</span>
+          </div>
+          <div class="biz-side-name">Racing Operation</div>
+          <div class="biz-side-desc">MIK Racing en1 — Technical Lab</div>
+          <div class="biz-side-tags">
+            <span class="biz-side-tag">Performance</span>
+            <span class="biz-side-tag">Technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ASSETS BANNER
+══════════════════════════════ -->
+<div id="assets-banner">
+  <div class="assets-inner">
+    <div class="assets-left reveal">
+      <div class="assets-label">03 Assets — Racing Team</div>
+      <h3 class="assets-title">
+        MIK Racing <span class="blue">en1</span> —<br>전기차 레이싱의 새로운 기준
+      </h3>
+      <p class="assets-desc">
+        2026 현대 N 페스티벌 eN1 클래스 참전. 대표 김동빈(전 슈퍼레이스 드라이버)이 이끄는 MIK Racing en1은 오한솔·한재희 라인업으로 데이터 기반 전기차 레이싱을 선보입니다.
+      </p>
+      <div class="assets-btns">
+        <a href="mik-racing.html" class="btn-primary">RACING 페이지 보기</a>
+        <a href="mik-racing.html#sponsorship" class="btn-outline">스폰서십 문의</a>
+      </div>
+    </div>
+    <div class="assets-right reveal reveal-d2">
+      <div class="assets-badge">
+        <div class="assets-badge-dot ab-cyan"></div>
+        <div class="assets-badge-text">2026 SEASON ACTIVE<small>현대 N 페스티벌 eN1 클래스</small></div>
+      </div>
+      <div class="assets-badge">
+        <div class="assets-badge-dot ab-blue"></div>
+        <div class="assets-badge-text">IONIQ 5 N<small>현대 아이오닉 5 N — 참전 차량</small></div>
+      </div>
+      <div class="assets-badge">
+        <div class="assets-badge-dot ab-dark"></div>
+        <div class="assets-badge-text">오한솔 × 한재희<small>테크니컬 앵커 × 가공되지 않은 원석</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     NEWS
+══════════════════════════════ -->
+<section id="news">
+  <div class="news-wrap">
+    <div class="news-header reveal">
+      <div>
+        <div class="sec-label">04 News</div>
+        <h2 class="sec-h2" style="font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:0;">최신 소식</h2>
+      </div>
+      <a href="#" class="news-more">전체 뉴스 보기</a>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-thumb t-dark">
+          <span class="news-thumb-text">en1</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat cat-press">보도자료</span>
+          <div class="news-title">MIK Racing, 2026 eN1 라인업 확정 — 오한솔·한재희와 전기차 레이싱 평정 선언</div>
+          <div class="news-date">2026.02.23</div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-d1">
+        <div class="news-thumb t-blue">
+          <span class="news-thumb-text">MIK</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat cat-notice">공지사항</span>
+          <div class="news-title">2026 시즌 레이스 캘린더 공개 — 현대 N 페스티벌 일정 안내</div>
+          <div class="news-date">2026.03.01</div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-d2">
+        <div class="news-thumb t-grey">
+          <span class="news-thumb-text">IPX</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat cat-biz">비즈니스</span>
+          <div class="news-title">인제 마스터즈 2026 스폰서십 패키지 안내 — 파트너사 모집</div>
+          <div class="news-date">2026.02.15</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CONTACT CTA
+══════════════════════════════ -->
+<div id="contact">
+  <div id="contact-cta" class="reveal">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-tag">05 Contact — 비즈니스 제휴</div>
+        <h2 class="cta-title">모터스포츠 비즈니스,<br>MIK와 함께 시작하세요</h2>
+        <p class="cta-desc">대회 운영 대행, 스폰서십, 드라이버 매니지먼트 등 모든 모터스포츠 비즈니스 문의를 환영합니다.</p>
+      </div>
+      <div class="cta-btns">
+        <a href="mailto:dkyang@miksports.com" class="btn-white">비즈니스 제휴 문의</a>
+        <a href="mailto:racrodk@gmail.com?subject=스폰서십 문의" class="btn-outline-white">스폰서십 문의</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <span>MIK</span>
+        <span class="fdiv"></span>
+        MOTION IN KOREA
+      </div>
+      <p>모터스포츠의 움직임을 넘어<br>감동으로 나아가는 기업, ㈜MIK.<br>Beyond Motion, Toward Emotion.</p>
+      <div class="f-link">
+        <span style="color:var(--cyan);font-size:.7rem;">●</span>
+        <a href="https://www.mikrace.com" target="_blank">www.mikrace.com</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>MENU</h4>
+      <ul>
+        <li><a href="#identity">Identity</a></li>
+        <li><a href="#business">Business</a></li>
+        <li><a href="#assets">Racing</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>BUSINESS</h4>
+      <ul>
+        <li><a href="mik-business.html#pillar-01">Promoter &amp; Organizer</a></li>
+        <li><a href="mik-business.html#pillar-02">Motorsports Solution</a></li>
+        <li><a href="mik-business.html#pillar-03">Athlete Management</a></li>
+        <li><a href="mik-business.html#pillar-04">Racing Operation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a></li>
+        <li><a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a></li>
+        <li><a href="https://www.mikrace.com" target="_blank">MIK Racing en1</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 ㈜MIK (Motion In Korea). All rights reserved.</p>
+    <div class="footer-emails">
+      <a href="mailto:dkyang@miksports.com">dkyang@miksports.com</a>
+      <a href="mailto:racrodk@gmail.com">racrodk@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Nav shadow on scroll ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('elevated', window.scrollY > 20);
+  });
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObs.observe(el));
+
+  /* ── Hero KPI counter ── */
+  function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    if (!target) return;
+    const dur = 1600, start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(tick);
+  }
+  const kpiObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-target]').forEach(countUp);
+        kpiObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('#hero, #stats').forEach(el => kpiObs.observe(el));
+
+  /* ── Business feature switcher ── */
+  const BIZ = [
+    {
+      bg: 'bg-01', deco: '01', badge: 'PROMOTER &amp; ORGANIZER',
+      num: '01 / Promoter &amp; Organizer',
+      name: '콘텐츠 IP 기획 &amp;<br>이벤트 설계',
+      desc: '모터스포츠 콘텐츠 IP를 기획하고 지속 가능한 이벤트 생태계를 구축합니다. 인제 마스터즈를 비롯한 대형 대회의 기획·운영·수익화까지 전 과정을 담당합니다.',
+      kws: ['Value Creation','Event Design','Sustainable IP'],
+      link: 'mik-business.html#pillar-01'
+    },
+    {
+      bg: 'bg-02', deco: '02', badge: 'MOTORSPORTS SOLUTION',
+      num: '02 / Motorsports Solution',
+      name: '대회 운영의<br>전문 에이전시',
+      desc: '기업·지자체의 모터스포츠 사업을 처음부터 끝까지 지원합니다. 기획부터 현장 운영, 정산까지 원스톱 솔루션을 제공합니다.',
+      kws: ['Expertise','Efficiency','Agency Service'],
+      link: 'mik-business.html#pillar-02'
+    },
+    {
+      bg: 'bg-03', deco: '03', badge: 'ATHLETE MANAGEMENT',
+      num: '03 / Athlete Management',
+      name: '드라이버를<br>브랜드로 만듭니다',
+      desc: '유망 드라이버를 발굴·육성하고 상업적 가치를 극대화합니다. 이정우 드라이버를 비롯한 소속 선수의 커리어 설계와 스폰서십 연결을 담당합니다.',
+      kws: ['Star Discovery','Branding','Career Path'],
+      link: 'mik-business.html#pillar-03'
+    },
+    {
+      bg: 'bg-04', deco: '04', badge: 'RACING OPERATION',
+      num: '04 / Racing Operation',
+      name: 'MIK Racing en1 —<br>Technical Lab',
+      desc: 'MIK Racing en1을 운영하며 전기차 레이싱의 최전선에서 기술을 검증합니다. 레이싱팀은 단순한 스포츠를 넘어 MIK의 실전 Technical Lab입니다.',
+      kws: ['Performance','Technology','Team Spirit'],
+      link: 'mik-business.html#pillar-04'
+    }
+  ];
+
+  function switchBiz(el) {
+    const idx = parseInt(el.dataset.idx);
+    const d = BIZ[idx];
+    const feature = document.getElementById('bizFeature');
+
+    feature.style.opacity = '0';
+    feature.style.transform = 'translateY(8px)';
+    feature.style.transition = 'opacity .22s, transform .22s';
+
+    setTimeout(() => {
+      document.getElementById('bizBg').className = 'biz-feature-bg ' + d.bg;
+      document.getElementById('bizDeco').textContent = d.deco;
+      document.getElementById('bizBadge').innerHTML = d.badge;
+      document.getElementById('bizNum').innerHTML = d.num;
+      document.getElementById('bizName').innerHTML = d.name;
+      document.getElementById('bizDesc').textContent = d.desc;
+      document.getElementById('bizKws').innerHTML = d.kws.map(k => `<span class="biz-feature-kw">${k}</span>`).join('');
+      document.getElementById('bizLink').href = d.link;
+      feature.style.opacity = '1';
+      feature.style.transform = 'translateY(0)';
+    }, 200);
+
+    document.querySelectorAll('.biz-side-card').forEach((c, i) => {
+      c.classList.toggle('active', i === idx);
+    });
+  }
+</script>
+</body>
+</html>
